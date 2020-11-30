@@ -1,0 +1,92 @@
+<mat-sidenav-container class="example-container" autosize>
+	<mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+		 <mat-nav-list>
+            <!-- <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/dashboard']">
+                <mat-icon class="example-sidenav"></mat-icon> {{ 'Dashboard' | translate }}
+            </a> -->
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/customer-demo']">
+                <!-- <mat-icon class="material-icons">person</mat-icon>  -->
+                {{ 'Customer Demographic / Basic Information' | translate }}
+               
+            </a>
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/logbook']">
+                <!-- <mat-icon class="material-icons">drafts</mat-icon>  -->
+                {{'Log Book - Draft CP Review (Non-Loxon)' | translate }}
+            </a>
+            
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/cp-logbook-approved']">
+                <!-- <mat-icon class="material-icons">book</mat-icon>  -->
+                {{ 'CP Log Book (Other Than Agri) - Approved CP (Conventional / Product)' | translate }}
+            </a>
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/documentD']">
+                <!-- <mat-icon class="material-icons">dock</mat-icon> -->
+                 {{ 'Documents Deficiency(ies) / Deferral Status Report' | translate }}
+            </a>
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/cp-monitoring']">
+                <!-- <mat-icon class="material-icons">rate_review</mat-icon>  -->
+                {{ 'CP Conditions Monitoring – Tracker' | translate }}
+            </a>
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/sbp-waivers']">
+                <!-- <mat-icon class="material-icons">account_balance</mat-icon>  -->
+                {{ 'SBP Waivers (Prudential Regulations)' | translate }}
+            </a>
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/credit-proposal']">
+                <!-- <mat-icon class="material-icons">credit_card</mat-icon>  -->
+                {{ 'Credit Proposals (CP) Renewed But Limit Feeding Pending Due To Non Receipt Of Documents '| translate }}
+            </a>
+        
+           
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/safe-in']">
+                <!-- <mat-icon class="material-icons">receipt</mat-icon>  -->
+                {{ 'Safe-in / out Register' | translate }}
+            </a>
+        
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/vendor-managenment']">
+                <!-- <mat-icon class="material-icons">device_hub</mat-icon> -->
+                 {{ 'Vendor Management' | translate }}
+            </a>
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/viewdocs']">
+                <!-- <mat-icon class="material-icons">device_hub</mat-icon> -->
+                 {{ 'View Docs' | translate }}
+            </a>
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/user']">
+                <mat-icon class=""></mat-icon> 
+               User Management
+            </a> 
+			<mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+				<span class="full-width" *ngIf="isExpanded || isShowing">Tickler</span>
+				<!-- <mat-icon mat-list-icon>
+                    sticky_note_2</mat-icon> -->
+				<mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+			</mat-list-item>
+			 <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+                <!-- <mat-icon mat-list-icon>
+                    sticky_note_2</mat-icon><a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/tickler-insurance']">Insurance Tickler</a> -->
+                   
+                    <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/stock-report']">Stock Report/Recivables -Tickler(Hypotheication)</a>
+                <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/stock-hypo']">Stock Inspection Tickler - (Hypo)</a>
+                <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/stock-pledge']">Stock Inspection Tickler - (Pledge)</a>
+                <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/pledge-joint']">
+                    <!-- <mat-icon class="material-icons">how_to_reg</mat-icon>  -->
+                    {{ 'Pledge Joint Inspection' | translate }}
+                </a>
+                <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/tickler-insurance']">Insurance Tickler</a> 
+                <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/valuation-expiry']">Valuation Expiry Tickler</a>
+                <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/documentL']">Documentation Legal Review Tickler</a>
+				<!-- <a mat-list-item href="...">Submenu Item 2</a> -->
+				<!-- <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+					<span class="full-width" *ngIf="isExpanded || isShowing">Nested Menu</span>
+					<mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+				</mat-list-item> 
+				<div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+					<mat-list-item>SubSubmenu Item 1</mat-list-item>
+					<mat-list-item>SubSubmenu Item 2</mat-list-item>
+				</div> -->
+            </div> 
+        
+		</mat-nav-list> 
+   
+
+	</mat-sidenav>
+
+</mat-sidenav-container>

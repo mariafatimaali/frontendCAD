@@ -1,0 +1,88 @@
+.mat-form-field {
+    width: 98%;
+    }
+    mat-form-field label {
+        font-size: 20px;
+      }
+      mat-form-field.mat-form-field-should-float label {
+        font-size: 20px;
+      }
+      .mat-header-cell {
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .mat-cell {
+        text-align: center;
+        justify-content:center;
+      }
+
+      .mat-table {
+        width: 100%;
+        display:block;
+        overflow-x: scroll;
+      }
+      
+      .mat-cell,
+      .mat-header-cell {
+        word-wrap: initial;
+        display: table-cell;
+        padding: 0px 10px;
+        line-break: unset;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        vertical-align: middle;
+      }
+      
+      .mat-row,
+      .mat-header-row {
+        display: table-row;
+      }
+      .mat-table {
+        width: 100%;
+        display:block;
+        overflow-x: scroll;
+      }
+      .required:after {
+        content:" *";
+        color: red;
+      }
+      input[type="date"]::-webkit-datetime-edit, input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-clear-button {
+        color: #fff;
+        position: relative;
+      }
+      
+      input[type="date"]::-webkit-datetime-edit-year-field{
+        position: absolute !important;
+        border-left:1px solid #8c8c8c;
+        padding: 2px;
+        color:#000;
+        left: 56px;
+      }
+      
+      input[type="date"]::-webkit-datetime-edit-month-field{
+        position: absolute !important;
+       border-left:1px solid #8c8c8c;
+      -webkit-hyphens: manual;
+      -ms-hyphens: manual;
+      hyphens: manual;
+        padding: 2px;
+        color:#000;
+        left: 26px;
+      }
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+          
+      
+      
+      input[type="date"]::-webkit-datetime-edit-day-field{
+        position: absolute !important;
+        color:#000;
+        padding: 2px;
+        left: 4px;
+        
+      }

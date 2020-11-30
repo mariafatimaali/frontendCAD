@@ -1,0 +1,10 @@
+@import 'material';
+@import 'main';
+@import 'utils';
+@import 'responsive';
+.mat-form-field label {
+    font-size: 20px;
+  }
+  mat-form-field.mat-form-field-should-float label {
+    font-size: 25px;
+  }

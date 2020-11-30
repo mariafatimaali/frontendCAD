@@ -1,0 +1,174 @@
+<mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Jan</mat-label>
+                    </div>
+                  <!-- <div [formGroup]='formGroup'>
+                   <input type='date' matInput name="jan" formControlName='JAN' [(ngModel)]="stockReportDetails.jan">
+                 </div> -->
+                   
+                     <div [formGroup]='formGroup'>
+                   <input type='date'  matInput name="jan" formControlName='JAN' [(ngModel)]="stockReportDetails.jan">
+                 </div>
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>  -->
+                     
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Feb</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <!-- <input matInput name="feb"  [(ngModel)]="stockReportDetails.feb"  class="mat-form-field"> -->
+                  </div>
+                  <input type='date' matInput name="feb"  [(ngModel)]="stockReportDetails.feb">
+<!--                 
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>March</mat-label>
+                   </div>
+                    <!-- <input matInput name="mar"  [(ngModel)]="stockReportDetails.mar"  class="mat-form-field">
+                   -->
+                    <input type='date' matInput  name="mar"  [(ngModel)]="stockReportDetails.mar">
+                
+                  <!-- <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                  <mat-datepicker #picker3></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Apr</mat-label>
+                    </div>
+                    <!-- <input matInput name="apr"  [(ngModel)]="stockReportDetails.apr"  class="mat-form-field"> -->
+                 
+                    <input type='date' matInput  name="apr"  [(ngModel)]="stockReportDetails.apr">
+                
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>May</mat-label>
+                   </div>
+                    <!-- <input matInput name="may" [(ngModel)]="stockReportDetails.may"  class="mat-form-field"> -->
+                  
+                    <input type='date' matInput  name="may"  [(ngModel)]="stockReportDetails.may">
+                
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-datepicker #picker5></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        June</mat-label>
+                      </div>
+                    <!-- <input matInput name="june"  [(ngModel)]="stockReportDetails.june"  class="mat-form-field">
+                   -->
+                    <input type='date' matInput  name="june"  [(ngModel)]="stockReportDetails.june">
+                
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                    <mat-datepicker #picker6></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+           
+           
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                       July</mat-label>
+                       </div>
+
+                    <!-- <input matInput name="july" [(ngModel)]="stockReportDetails.july"  class="mat-form-field"> -->
+            
+                    <input type='date' matInput  name="july"  [(ngModel)]="stockReportDetails.july">
+                
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle> -->
+                    <!-- <mat-datepicker #picker7></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+           
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                       August</mat-label>
+                      </div>
+                    <!-- <input matInput name="aug"  [(ngModel)]="stockReportDetails.aug"  class="mat-form-field"> -->
+                  
+                    <input type='date' matInput name="aug"  [(ngModel)]="stockReportDetails.aug">
+                
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker8"></mat-datepicker-toggle>
+                    <mat-datepicker #picker8></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        Sep</mat-label>
+             </div>
+                    <!-- <input matInput name="sep"[(ngModel)]="stockReportDetails.sep"  class="mat-form-field">
+                -->
+                    <input type='date' matInput  name="sep"  [(ngModel)]="stockReportDetails.sep">
+                
+                  <!-- <mat-datepicker-toggle matSuffix [for]="picker9"></mat-datepicker-toggle>
+                  <mat-datepicker #picker9></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        Oct</mat-label>
+                        </div>
+                    <!-- <input matInput name="oct"  [(ngModel)]="stockReportDetails.oct"  class="mat-form-field"> -->
+                 
+                    <input type='date' matInput name="oct"  [(ngModel)]="stockReportDetails.oct">
+                
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker10"></mat-datepicker-toggle>
+                    <mat-datepicker #picker10></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        Nov</mat-label>
+                       </div>
+
+                    <!-- <input matInput name="nov" [(ngModel)]="stockReportDetails.nov"  class="mat-form-field"> -->
+                
+                    <input type='date' matInput  name="nov"  [(ngModel)]="stockReportDetails.nov">
+                
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                    <mat-datepicker #picker11></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+           
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                       Dec </mat-label>
+                     </div>
+                    <!-- <input matInput name="dec" [(ngModel)]="stockReportDetails.dec"  class="mat-form-field"> -->
+                
+                    <input type='date' matInput  name="dec"  [(ngModel)]="stockReportDetails.dec">
+                
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker12"></mat-datepicker-toggle>
+                    <mat-datepicker #picker12></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>

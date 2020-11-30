@@ -1,0 +1,649 @@
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">Vendor Management</mat-card>
+<mat-card style="auto:">
+    <form>
+       
+        
+        <mat-grid-list cols="3" rowHeight="75px" gutterSize="1px">
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label class="mat-form-field-should-float">Vendor Category</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <mat-select    name='vendorCategory' formControlName='VENDORCATEGORY'
+                        [(ngModel)]="vendorManagementDetails.vendorCategory">
+                            <mat-option *ngFor="let businessSegment of vendorCategory" [value]="businessSegment.value" >
+                              {{businessSegment.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                    <!-- <input matInput formControlName="VENDORCATEGORY" name="vendorCategory" placeholder="" class="mat-form-field"
+                    (focusout)='alphanumeric($event.target.value)' (input)="onSearchChange($event.target.value)" maxlength="20"
+                        [(ngModel)]="vendorManagementDetails.vendorCategory"  [attr.disabled]="isDisabled" #primenumber (focusout)='onFocusOut()'>
+                    -->
+                    </div> 
+                   <!-- <mat-error *ngIf="vendorCategoryControl.hasError('minLength')">
+                        Prime Number should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="vendorCategoryControl.errors.maxLength">
+                        Prime Number should be atleast of length 6
+                    </mat-error> -->
+                    <mat-error *ngIf="vendorCategoryControl.hasError('required')">
+                        Vendor Category <strong>required</strong>
+                    </mat-error> 
+              
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+       
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Vendor Name</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <input matInput name="vendorName" formControlName='VENDORNAME' maxlength="35"
+                         class="mat-form-field" [(ngModel)]="vendorManagementDetails.vendorName">
+                      
+                    </div>   
+                    <!-- <mat-select [formControl]="selected" >
+                        <mat-option>Corporate</mat-option>
+
+                            <mat-option>Structured Credit</mat-option>
+
+                                <mat-option>Islamic</mat-option>
+
+                                    <mat-option>Commercial</mat-option>
+
+                                        <mat-option> Retail</mat-option>
+
+                                            <mat-option>Remedial Assets</mat-option>
+                      </mat-select> -->
+                      <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                      <!-- <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error> -->
+                      <!-- <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
+                        Your selection is invalid
+                      </mat-error> -->
+                </mat-form-field>
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+
+                    <mat-label>Vendor Short Name</mat-label></div>
+                    <div [formGroup]='formGroup'>
+                        <input matInput name="vendorShortName" formControlName='VENDORSHORTNAME' maxlength="15"
+                         class="mat-form-field" [(ngModel)]="vendorManagementDetails.vendorShortName">
+                      
+                    </div>   
+                    <mat-error *ngIf="principalexecutiveFormControl.hasError('required')">
+                        Vendor Short Name <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Principal Executive</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput name="principalexecutive" formControlName='PRINCIPALEXECUITIVE' maxlength="35"
+                     class="mat-form-field" [(ngModel)]="vendorManagementDetails.principalexecutive">
+                  
+                </div>   
+              
+                    <mat-error *ngIf="principalexecutiveFormControl.hasError('required')">
+                        Principal Executive <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+
+
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>
+                        Office Address</mat-label>
+                    </div>
+                                  <div [formGroup]='formGroup'>
+                    <input matInput name="officeAddress" formControlName='OFFICEADDRESS' maxlength="35" 
+                     class="mat-form-field" [(ngModel)]="vendorManagementDetails.officeAddress">
+                  
+                </div>  
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Branch Name should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="officeAddressFormControl.hasError('maxLength')">
+                        Branch Name should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="officeAddressFormControl.hasError('required')">
+                        Office Address <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Office Telephone-1</mat-label></div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput type="number" name="officeTelephone1"  
+                    formControlName='OFFICETELEPHONE'   
+                     [(ngModel)]="vendorManagementDetails.officeTelephone1"  
+                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  maxlength="11"class="mat-form-field">
+                   </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Name of Borrower should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Name of Borrower should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="officeTelephone1FormControl.hasError('required')">
+                        Office Telephone-1<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Office Telephone-2</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput type="number" name="officeTelephone2"   
+                    formControlName='OFFICE2TEL'   
+                     [(ngModel)]="vendorManagementDetails.officeTelephone2"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  maxlength="11"class="mat-form-field">
+                   </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Name of Borrower should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Name of Borrower should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="officeTelephone2FormControl.hasError('required')">
+                        Office Telephone-2<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+           
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Office Mobile-1</mat-label>
+                    </div>
+<div [formGroup]='formGroup'>
+                    <input matInput  type="number"  formControlName='OFFICEMOBILE' name="officeMobile1"   
+                     class="mat-form-field" [(ngModel)]="vendorManagementDetails.officeMobile1"
+                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  maxlength="11">
+                </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Group Code should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Group Code should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="officeMobile1FormControl.hasError('required')">
+                        Office Mobile-1<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+
+
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Office Mobile-2</mat-label>
+                    </div>
+                       <div [formGroup]='formGroup'>
+                    <input matInput   type="number" formControlName='OFFICEMOBILE2'
+                     name="officeMobile2"
+                     class="mat-form-field"
+                      [(ngModel)]="vendorManagementDetails.officeMobile2" 
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  maxlength="11">
+                </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Group Code should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Group Code should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="officeMobile2FormControl.hasError('required')">
+                        Office Mobile-2 <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+
+
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>
+                    Office E-mail</mat-label></div>
+
+                    <div [formGroup]='formGroup'>
+                    <input matInput name="officeemail"  formControlName='OFFICEEMAIL' [(ngModel)]="vendorManagementDetails.officeemail"   maxlength="35" class="mat-form-field">
+                  
+                </div>  <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Name of Group should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Name of Group should be atleast of length 7
+                    </mat-error> -->
+                    <mat-error *ngIf="officeemailFormControl.hasError('required')">
+                        Office E-mail<strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>
+                        Vendor Status</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <!-- <input matInput name="vendorStatus" formControlName='VENDORSTATUS' [(ngModel)]="vendorManagementDetails.vendorStatus"     class="mat-form-field"> -->
+                   
+                    <mat-select    name='vendorStatus' formControlName='VENDORSTATUS'
+                    [(ngModel)]="vendorManagementDetails.vendorStatus">
+                        <mat-option *ngFor="let businessSegment of vendor" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                     
+
+                   </div> <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Customer Status should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Customer Status should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="vendorStatusFormControl.hasError('required')">
+                        Vendor Status <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Enlisted on preferred panel (For Valuators)</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput type="date" max="2040-01-02"name="enlistedonpreferredpanel"  
+                    formControlName='ENLISTED' [(ngModel)]="vendorManagementDetails.enlistedonpreferredpanel"
+                   class="mat-form-field">
+                    </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        CNIC should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        CNIC should be atleast of length 7
+                    </mat-error>-->
+                    <!-- <mat-error *ngIf="enlistedonpreferredpanelFormControl.hasError('required')">
+                        Enlisted on preferred panel (For Valuators) <strong>required</strong>
+                    </mat-error>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                <mat-label>
+                        Date of Enlistement</mat-label>
+                    </div>
+                       <!--  <div [formGroup]='formGroup'>
+                    <input matInput name="dateofenlistement" formControlName='DATEENLISTED' [(ngModel)]="vendorManagementDetails.dateofenlistement"  class="mat-form-field">
+                  </div> -->
+                  <input matInput type="date" max="2040-01-02" name="dateofenlistement"  [(ngModel)]="vendorManagementDetails.dateofenlistement">
+<!--                  
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>  -->
+                    <mat-error *ngIf="dateofenlistementFormControl.hasError('required')">
+                        Date of Enlistement<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                <mat-label>
+                        Date of Re-enlistement</mat-label>
+                    </div>                     <!--  <div [formGroup]='formGroup'>
+                    <input matInput name="dateofenlistement" formControlName='DATEENLISTED' [(ngModel)]="vendorManagementDetails.dateofenlistement"  class="mat-form-field">
+                  </div> -->
+                  <input matInput type="date" max="2040-01-02" name="dateofReenlistement" 
+                   [(ngModel)]="vendorManagementDetails.dateofReenlistement">
+                 
+                  <!-- <mat-datepicker-toggle matSuffix [for]="picker0"></mat-datepicker-toggle>
+                  <mat-datepicker #picker0></mat-datepicker>  -->
+                    <!-- <mat-error *ngIf="dateofenlistementFormControl.hasError('required')">
+                        Date of Re-enlistement<strong>required</strong>
+                    </mat-error>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+           
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Date of suspension</mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="dateofsuspension" formControlName='DATEOFSUSPENSION' [(ngModel)]="vendorManagementDetails.dateofsuspension"  class="mat-form-field">
+                   </div> -->
+                   <input matInput type="date" max="2040-01-02" name="dateofsuspension" 
+                    [(ngModel)]="vendorManagementDetails.dateofsuspension">
+                 
+                   <!-- <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                   <mat-datepicker #picker2></mat-datepicker>  -->
+                    <!-- <mat-error *ngIf="dateofsuspensionFormControl.hasError('required')">
+                        Date of suspension<strong>required</strong>
+                    </mat-error> -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Date of De-enlistment</mat-label></div>
+                    <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="dateofdelistment" formControlName='DATEOFDELISTMENT' [(ngModel)]="vendorManagementDetails.dateofdelistment"  class="mat-form-field">
+                   </div> -->
+                   <input matInput type="date" name="dateofdelistment" max="2040-01-02"
+                    [(ngModel)]="vendorManagementDetails.dateofdelistment">
+                 
+                   <!-- <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                   <mat-datepicker #picker3></mat-datepicker>  -->
+                    <!-- <mat-error *ngIf="dateofdelistmentFormControl.hasError('required')">
+                        Date of De-listment<strong>required</strong>
+                    </mat-error> -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Category of HBL (for Valuators)</mat-label>
+                    </div>
+                  
+                    <!-- <input matInput name="categoryofHBL" formControlName='CATEGORYHBL' [(ngModel)]="vendorManagementDetails.categoryofHBL"  class="mat-form-field"> -->
+                  
+                
+                    <mat-select    name='categoryofHBL' 
+                    [(ngModel)]="vendorManagementDetails.categoryofHBL">
+                        <mat-option *ngFor="let businessSegment of hblo" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select>
+             
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Customer type should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Customer type should be atleast of length 7
+                    </mat-error>-->
+                    <!-- <mat-error *ngIf="categoryofHBLFormControl.hasError('required')">
+                        Category of HBL (for Valuators)<strong>required</strong>
+                    </mat-error>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        Valution Limit (For Valuators)</mat-label></div>
+                    <input matInput name="valutionLimit"
+                     [(ngModel)]="vendorManagementDetails.valutionLimit"  class="mat-form-field" maxlength="15">
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Customer type should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Customer type should be atleast of length 7
+                    </mat-error>-->
+                    <!-- <mat-error *ngIf="valutionLimitFormControl.hasError('required')">
+                        Valution Limit <strong>required</strong>
+                    </mat-error>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>
+                        Enlisted City</mat-label>
+                        </div>
+                        <mat-select    name='enlistedCity' formControlName='VENDORCATEGORY'
+                        [(ngModel)]="vendorManagementDetails.enlistedCity">
+                            <mat-option *ngFor="let businessSegment of Enlistedcity" [value]="businessSegment.value" >
+                              {{businessSegment.viewvalue}}
+                            </mat-option>
+                          </mat-select>
+                    <!-- <input matInput name="  <mat-select    name='vendorCategory' formControlName='VENDORCATEGORY'
+                        [(ngModel)]="vendorManagementDetails.vendorCategory">
+                            <mat-option *ngFor="let businessSegment of vendorCategory" [value]="businessSegment.value" >
+                              {{businessSegment.viewValue}}
+                            </mat-option>
+                          </mat-select>" [(ngModel)]="vendorManagementDetails.enlistedCity"  class="mat-form-field"> -->
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Customer type should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Customer type should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="enlistedCityFormControl.hasError('required')">
+                        Enlisted City <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        Remarks</mat-label>
+                        </div>
+                    <input matInput name="Remarks" [(ngModel)]="vendorManagementDetails.Remarks"  maxlength="35" 
+                     class="mat-form-field">
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Customer type should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Customer type should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="RemarksFormControl.hasError('required')">
+                         Remarks<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile>
+                 <!-- <button style="
+            background-color: #00AA97;
+                height:48px ;
+                width:250px !important;
+                font-size:20px !important;" mat-raised-button color="primary"
+                (click)=" validaions();">Add to Database</button>
+   -->
+   <button style="
+   background-color: #00AA97;
+       height:48px ;
+       width:250px !important;
+       font-size:20px !important;" mat-raised-button color="primary" 
+       (click)=" validaions();">Save to Database</button>
+            <h1 style="color:white">hiiiiiiiiiii</h1>   <button style="
+               background-color: #00AA97;
+                   height:48px ;
+                   width:100px !important;
+                   font-size:20px !important;" mat-raised-button color="primary"  (click)="goback();">Go Back</button>    
+            </mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+        </mat-grid-list>
+    </form>
+
+</mat-card>
+
+
+
+<br>
+
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">Vendor Management Data</mat-card>
+<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column">
+    <div fxFlex>
+
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" style="color : #00AA97;">
+        </mat-form-field>
+        <button mat-raised-button   style="
+        background-color: #00AA97;
+            " (click)="exporter.exportTable('xlsx', {fileName:'Stock Report ', sheet: 'Stock Report'})">Generate Report</button>
+            <table mat-table [dataSource]="dataSource" matTableExporter #exporter="matTableExporter" class="mat-elevation-z8">
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                <td mat-cell *matCellDef="let customerDemographicData">
+                    <div *ngIf="hideEdit === 'false'">
+                    <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="editCustomerDemographic(customerDemographicData)" class="btn-small btn-success"  mat-raised-button color="primary">Edit</button>
+                 </div>
+                </td>
+              </ng-container>
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>
+                   
+                </th>
+                <td mat-cell *matCellDef="let customerDemographicData">
+                    <div *ngIf="hideDelete === 'false'">
+                    <button style="
+                    
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="deleteCustomer(customerDemographicData.vendorCategory)" mat-raised-button color="warn">Delete</button>
+                 </div>
+                </td>
+              </ng-container>
+            <ng-container matColumnDef="vendorCategory">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Vendor Category </th>
+                <td mat-cell *matCellDef="let element"> {{element.vendorCategory}} </td>
+            </ng-container>
+            <ng-container matColumnDef="vendorName">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">Vendor Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.vendorName}} </td>
+            </ng-container>
+             <ng-container matColumnDef="vendorShortName" >
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Vendor Short Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.vendorShortName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="principalexecutive">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">Principal Executive </th>
+                <td mat-cell *matCellDef="let element"> {{element.principalexecutive}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="officeAddress">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Office Address </th>
+                <td mat-cell *matCellDef="let element"> {{element.officeAddress}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="officeTelephone1">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">Office Telephone1 </th>
+                <td mat-cell *matCellDef="let element"> {{element.officeTelephone1}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="officeTelephone2">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> 
+                    OfficeTelephone2 </th>
+                <td mat-cell *matCellDef="let element"> {{element.officeTelephone2}} </td>
+            </ng-container>
+            <ng-container matColumnDef="officeMobile1">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">Office Mobile 1 </th>
+                <td mat-cell *matCellDef="let element"> {{element.officeMobile1}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="officeMobile2">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Office Mobile 2 </th>
+                <td mat-cell *matCellDef="let element"> {{element.officeMobile2}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="officeemail">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Office email </th>
+                <td mat-cell *matCellDef="let element"> {{element.officeemail}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="vendorStatus">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Vendor Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.vendorStatus}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="enlistedonpreferredpanel">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Enlisted on preferred panel </th>
+                <td mat-cell *matCellDef="let element"> {{element.enlistedonpreferredpanel}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="dateofenlistement">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> dateofenlistement </th>
+                <td mat-cell *matCellDef="let element"> {{element.dateofenlistement|date:'dd-MMM-yyyy'}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="dateofsuspension">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Date of suspension </th>
+                <td mat-cell *matCellDef="let element"> {{element.dateofsuspension|date:'dd-MMM-yyyy'}} </td>
+            </ng-container> 
+
+            <ng-container matColumnDef="dateofReenlistement">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Date of Reenlistement</th>
+                <td mat-cell *matCellDef="let element"> {{element.dateofReenlistement|date:'dd-MMM-yyyy'}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="dateofdelistment">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Date of delistment </th>
+                <td mat-cell *matCellDef="let element"> {{element.dateofdelistment|date:'dd-MMM-yyyy'}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="categoryofHBL">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Category of HBL</th>
+                <td mat-cell *matCellDef="let element"> {{element.categoryofHBL}} </td>
+            </ng-container> 
+
+            <ng-container matColumnDef="valutionLimit">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Valution Limit </th>
+                <td mat-cell *matCellDef="let element"> {{element.valutionLimit}} </td>
+            </ng-container> 
+
+            <ng-container matColumnDef="enlistedCity">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Enlisted City </th>
+                <td mat-cell *matCellDef="let element"> {{element.enlistedCity}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="Remarks">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Remarks </th>
+                <td mat-cell *matCellDef="let element"> {{element.Remarks}} </td>
+            </ng-container> 
+          
+            <ng-container matColumnDef="duedateofNextValuation">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Due date of Next Valuation</th>
+                <td mat-cell *matCellDef="let element"> {{element.duedateofNextValuation|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="accountStatus">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">Account Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.accountStatus}} </td>
+            </ng-container>
+            <ng-container matColumnDef="createdBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Created By</th>
+                <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="modifiedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Modified By </th>
+                <td mat-cell *matCellDef="let element"> {{element.modifiedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="modifiedOn">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Modified On </th>
+                <td mat-cell *matCellDef="let element"> {{element.modifiedOn}} </td>
+            </ng-container>
+            <ng-container matColumnDef="createdOn">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Created On </th>
+                <td mat-cell *matCellDef="let element"> {{element.createdOn}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

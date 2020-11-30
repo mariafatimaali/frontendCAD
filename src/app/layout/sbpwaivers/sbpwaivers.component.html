@@ -1,0 +1,428 @@
+
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">SBP Waivers (Prudential Regulations) </mat-card>
+<mat-card style="auto:">
+    <form>
+       
+        
+        <mat-grid-list cols="3" rowHeight="75px" gutterSize="1px">
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label class="mat-form-field-should-float">Prime Number</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput formControlName="PRIMENUMBER" name="primeNumber" placeholder="Prime Number" class="mat-form-field"
+                    (focusout)='alphanumeric($event.target.value)' style="text-transform: uppercase"  maxlength="6"
+                        [(ngModel)]="sbpWaiverDetails.primeNumber"  #primenumber  [attr.disabled]="isDisabled"  (focusout)='onFocusOut()'>
+                    </div>
+                   <mat-error *ngIf="primeFormControl.hasError('minlength')">
+                        Prime Number should be atleast of length 6
+                    </mat-error>
+                    <!-- <mat-error *ngIf="primeFormControl.errors.maxLength">
+                        Prime Number should be atleast of length 6
+                    </mat-error> -->
+                    <mat-error *ngIf="primeFormControl.hasError('required')">
+                        Prime Number <strong>required</strong>
+                    </mat-error> 
+              
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+       
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Name of Business Segment</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <!-- <mat-select name='businessSegment' formControlName='BS'
+                        [(ngModel)]="sbpWaiverDetails.businessSegment">
+                            <mat-option *ngFor="let businessSegment of business" [value]="businessSegment.value" >
+                              {{businessSegment.viewValue}}
+                            </mat-option>
+                          </mat-select> -->
+                          <input   readonly matInput name="businessSegment" formControlName='BS' 
+                          class="mat-form-field" [(ngModel)]="sbpWaiverDetails.businessSegment" >
+                        </div>
+                        <mat-error *ngIf="businessSegmentFormControl.hasError('required')">
+                            Business Segment is <strong>required</strong>
+                        </mat-error>
+                    <!-- <mat-select [formControl]="selected" >
+                        <mat-option>Corporate</mat-option>
+
+                            <mat-option>Structured Credit</mat-option>
+
+                                <mat-option>Islamic</mat-option>
+
+                                    <mat-option>Commercial</mat-option>
+
+                                        <mat-option> Retail</mat-option>
+
+                                            <mat-option>Remedial Assets</mat-option>
+                      </mat-select> -->
+                      <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                      <!-- <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error> -->
+                      <!-- <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
+                        Your selection is invalid
+                      </mat-error> -->
+                </mat-form-field>
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Region</mat-label>
+                    </div>
+                     <div [formGroup]='formGroup'>
+                       
+                        <!-- <mat-select name='region' formControlName='REGION' [(ngModel)]="sbpWaiverDetails.region">
+                            <mat-option *ngFor="let businessSegment of Region" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select> -->
+                        <input   readonly matInput name="region" formControlName='REGION' 
+                        class="mat-form-field" [(ngModel)]="sbpWaiverDetails.region" >
+                        </div>
+                 
+                    <mat-error *ngIf="regionFormControl.hasError('required')">
+                        Region is <strong>required</strong>
+                    </mat-error> 
+               
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Branch Code</mat-label>
+                    </div>
+
+
+                  
+                <!-- <mat-select  name="branchCode"
+                [(ngModel)]="sbpWaiverDetails.branchCode"  
+                (selectionChange)="onSearchChangeBranch($event.value)">
+
+
+                   <mat-option  *ngFor="let branch of allBranchesDetails ;let i = index" [value]="branch.BranchCode">
+                       {{branch.BranchCode}}</mat-option>
+               </mat-select> -->
+               <div [formGroup]='formGroup'>
+                <input  matInput readonly name="branchCode" type="number" formControlName='BRANCHCODE' oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  maxlength="4"
+                class="mat-form-field" [(ngModel)]="sbpWaiverDetails.branchCode">
+              
+            </div> 
+               
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+
+
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Branch Name</mat-label>
+                    </div>
+                                  <div [formGroup]='formGroup'>
+                    <input  matInput  readonly name="branchName" formControlName='BRANCHNAME' class="mat-form-field" [(ngModel)]="sbpWaiverDetails.branchName">
+                  
+                </div>  
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Branch Name should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Branch Name should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="branchNameControl.hasError('required')">
+                        Branch Name <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Name of Borrower</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput readonly name="nameOfBorrower"  formControlName='NAMEOFBORROWER'   [(ngModel)]="sbpWaiverDetails.nameOfBorrower" maxlength="35" class="mat-form-field">
+                   </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Name of Borrower should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Name of Borrower should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="nameOfBorrowerFormControl.hasError('required')">
+                        Name of Borrower<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Nature of Exception/Wavier </mat-label>
+                    </div>
+<div [formGroup]='formGroup'>
+                    <input matInput  formControlName='NATURE' name="natureofException" class="mat-form-field" [(ngModel)]="sbpWaiverDetails.natureofException"  maxlength="35">
+                </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Group Code should be atleast of length 6
+                    </mat-error>Code
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Group Code should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="natureofExceptionFormControl.hasError('required')">
+                        Nature of Exception/Wavier <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+
+
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Approval Ref</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput name="aprovalRef"  formControlName='APPROVEREF' [(ngModel)]="sbpWaiverDetails.aprovalRef"  class="mat-form-field"  maxlength="35">
+                  
+                </div>  <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Name of Group should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Name of Group should be atleast of length 7
+                    </mat-error> -->
+                    <mat-error *ngIf="aprovalRefFormControl.hasError('required')">
+                        Approval Ref <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label> 
+                        SBP Approval Letter Date</mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                    <input matInput [matDatepicker]="picker1102" name="sBPApprovalLetterDate" formControlName='SBPAPPROVAL' [(ngModel)]="sbpWaiverDetails.sBPApprovalLetterDate"   class="mat-form-field">
+                   
+                   </div> -->
+                   
+                   <input matInput type="date" name="sBPApprovalLetterDate"  max="2040-01-02" [(ngModel)]="sbpWaiverDetails.sBPApprovalLetterDate">
+                 
+                   <!-- <mat-datepicker-toggle matSuffix [for]="picker1102"></mat-datepicker-toggle>
+                   <mat-datepicker #picker1102></mat-datepicker>  -->
+                   <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Customer Status should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Customer Status should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="sBPApprovalLetterDateFormControl.hasError('required')">
+                        SBP Approval Letter Date<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+                <!-- <button style="
+                    
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="docService()" mat-raised-button color="primary">Attachment</button> -->
+                <!-- <mat-form-field class="example-full-width">
+                    <mat-label>Attachment</mat-label>
+                    <div [formGroup]='formGroup'>
+                    <input matInput name="attachment" formControlName='ATTACHMENT' [(ngModel)]="sbpWaiverDetails.attachment"  class="mat-form-field">
+                  </div>
+                     <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        SBP CIB Code should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        SBP CIB Code should be atleast of length 7
+                    </mat-error>-->
+                    <!-- <mat-error *ngIf="attachmentFormControl.hasError('required')">
+                        Attachment <strong>required</strong>
+                    </mat-error>  --> 
+                <!-- </mat-form-field> -->
+            </mat-grid-tile>
+            
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile>  </mat-grid-tile>
+            <mat-grid-tile><h1 style="color:white">hiiiiiiiiiiiiiiiiiiiiiii</h1>  <button style="
+                background-color: #00AA97;
+                    height:48px ;
+                    width:275px !important;
+                    font-size:20px !important;" mat-raised-button color="primary"
+                     (click)="validaions();">Save to Database</button></mat-grid-tile>
+          <mat-grid-tile>    <!--<button style="
+            background-color: #00AA97;
+                height:48px ;
+                width:250px !important;
+                font-size:20px !important;" mat-raised-button color="primary"
+                 (click)="validaions();">Save to Database</button> -->
+                 
+                 <h1 style="color:white">hiiiiii</h1>  
+                 <button style="
+                 background-color: #00AA97;
+                     height:48px ;
+                     width:275px !important;
+                     font-size:20px !important;" mat-raised-button color="primary"
+                      (click)="docService();">Upload Document</button>
+     
+                <h1 style="color:white">hiiiiiiiiiii</h1>   <button style="
+                   background-color: #00AA97;
+                       height:48px ;
+                       width:100px !important;
+                       font-size:20px !important;" mat-raised-button color="primary"  (click)="goback();">Go Back</button></mat-grid-tile>
+            
+
+            <mat-grid-tile> 
+                    <!-- <h1 style="color:white">hiiiiiiiiiii</h1>   <button style="
+                       background-color: #00AA97;
+                           height:48px ;
+                           width:100px !important;
+                           font-size:20px !important;" mat-raised-button color="primary"  >Go Back</button>-->
+                        </mat-grid-tile> 
+               
+        </mat-grid-list>
+        
+    </form>
+
+</mat-card>
+
+
+
+<br>
+
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">SBP Waivers (Prudential Regulations) Data</mat-card>
+<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column" class="mat-table-sticky">
+    <div fxFlex>
+
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" style="color : #00AA97;">
+        </mat-form-field>
+        <button mat-raised-button   style="
+        background-color: #00AA97;
+            " (click)="exporter.exportTable('xlsx', {fileName:'Stock Report ', sheet: 'Stock Report'})">Generate Report</button>
+        <table mat-table [dataSource]="dataSource" matTableExporter #exporter="matTableExporter" class="mat-elevation-z8">
+            <ng-container matColumnDef="primeNumber">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Prime Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.primeNumber}} </td>
+            </ng-container>
+            <ng-container matColumnDef="businessSegment">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">   Name of Business Segment </th>
+                <td mat-cell *matCellDef="let element"> {{element.businessSegment}} </td>
+            </ng-container>
+             <ng-container matColumnDef="region" >
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">  Region</th>
+                <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+            </ng-container>
+            <ng-container matColumnDef="branchCode">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Branch Code </th>
+                <td mat-cell *matCellDef="let element"> {{element.branchCode}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="branchName">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Branch Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.branchName}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="nameOfBorrower">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Name Of Borrower </th>
+                <td mat-cell *matCellDef="let element"> {{element.nameOfBorrower}} </td>
+            </ng-container> 
+           
+            <ng-container matColumnDef="nameOfGroup">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Name of Group </th>
+                <td mat-cell *matCellDef="let element"> {{element.nameOfGroup}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="natureofException">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">   Nature of Exception </th>
+                <td mat-cell *matCellDef="let element"> {{element.natureofException}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="aprovalRef">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Aproval Ref </th>
+                <td mat-cell *matCellDef="let element"> {{element.aprovalRef}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="sBPApprovalLetterDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> SBP Approval Letter Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.sBPApprovalLetterDate|date:'dd-MM-yyyy'}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="createdBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Created By</th>
+                <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="modifiedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Modified By </th>
+                <td mat-cell *matCellDef="let element"> {{element.modifiedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="modifiedOn">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Modified On </th>
+                <td mat-cell *matCellDef="let element"> {{element.modifiedOn}} </td>
+            </ng-container>
+            <ng-container matColumnDef="createdOn">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Created On </th>
+                <td mat-cell *matCellDef="let element"> {{element.createdOn}} </td>
+            </ng-container>
+            <!-- <ng-container matColumnDef="attachment">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Attachment </th>
+                <td mat-cell *matCellDef="let element"> {{element.attachment}} </td>
+            </ng-container>  -->
+
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <!-- <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:100px !important;
+                        font-size:20px !important;"  class="btn-small btn-success"  mat-raised-button color="primary">Edit</button>
+              
+                </th> -->
+                <td mat-cell *matCellDef="let customerDemographicData">
+                    <div *ngIf="hideEdit === 'false'">
+                    <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="editCustomerDemographic(customerDemographicData)" class="btn-small btn-success"  mat-raised-button color="primary">Edit</button>
+                 </div>
+                </td>
+              </ng-container>
+
+
+
+              <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>
+                    <!-- <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" mat-raised-button color="warn">Delete</button> -->
+              
+                </th>
+                <td mat-cell *matCellDef="let customerDemographicData">
+                    <div *ngIf="hideDelete === 'false'">
+                    <button style="
+                    
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="deleteCustomer(customerDemographicData.primeNumber)" mat-raised-button color="warn">Delete</button>
+                 </div>
+                </td>
+              </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

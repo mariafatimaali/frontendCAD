@@ -1,0 +1,25 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Fontil Sans';
+}
+
+.main-container {
+    position: absolute;
+    top: 64px;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+mat-form-field.mat-form-field-should-float label {
+    font-size: 25px;
+  }
+  .mat-tab-label{
+    font-size: 15px !important;
+ } 

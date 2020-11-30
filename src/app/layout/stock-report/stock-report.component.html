@@ -1,0 +1,924 @@
+
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">Stock / Receivable Report – Tickler (Hypo)</mat-card>
+<mat-card style="auto:">
+    <form>
+       
+        
+        <mat-grid-list cols="3" rowHeight="75px" gutterSize="1px">
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label class="mat-form-field-should-float">Prime Number</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput formControlName="PRIMENUMBER" name="primeNumber" placeholder="Prime Number" class="mat-form-field"
+                    (focusout)='alphanumeric($event.target.value)' style="text-transform: uppercase" maxlength="6" minlength="6"
+                        [(ngModel)]="stockReportDetails.primeNumber" [attr.disabled]="isDisabled" #primenumber (focusout)='onkeyup()'>
+                    </div>
+                    <mat-error *ngIf="primeFormControl.hasError('minlength')">
+                        Prime Number should be atleast of length 6
+                    </mat-error>
+                   <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Prime Number should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.errors.maxLength">
+                        Prime Number should be atleast of length 6
+                    </mat-error> -->
+                    <mat-error *ngIf="primeFormControl.hasError('required')">
+                        Prime Number <strong>required</strong>
+                    </mat-error> 
+              
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+       
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Name of Business Segment</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <!-- <mat-select   name='businessSegment' formControlName='BS'
+                        [(ngModel)]="stockReportDetails.businessSegment">
+                        <mat-option *ngFor="let businessSegment of business" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select> -->
+                      <input  readonly matInput name="businessSegment" formControlName='BS' 
+                      class="mat-form-field" [(ngModel)]="stockReportDetails.businessSegment" >
+                     
+                      </div>
+                      <mat-error *ngIf="businessSegmentFormControl.hasError('required')">
+                        Business Segment is <strong>required</strong>
+                    </mat-error> 
+                  
+                </mat-form-field>
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Region</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <!-- <mat-select   name='region' formControlName='REGION'
+                        [(ngModel)]="stockReportDetails.region">
+                            <mat-option *ngFor="let businessSegment of Region" [value]="businessSegment.value" >
+                              {{businessSegment.viewValue}}
+                            </mat-option>
+                          </mat-select> -->
+                          <input  readonly matInput name="region" formControlName='REGION' 
+                        class="mat-form-field" [(ngModel)]="stockReportDetails.region" >
+                        </div>
+                        <mat-error *ngIf="regionFormControl.hasError('required')">
+                            Region is <strong>required</strong>
+                        </mat-error> 
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Branch Code</mat-label>
+</div>
+
+                     <!-- <mat-select  name="branchCode"
+                     [(ngModel)]="insuranceTicklerDetails.branchCode"  formControlName='BRANCHCODE' 
+                     (input)="onSearchChangeBranch($event.target.value)">
+
+
+                        <mat-option  *ngFor="let branch of allBranchesDetails ;let i = index" [value]="i">
+                            {{branch.BranchCode}}</mat-option>
+                    </mat-select> -->
+                    <!-- <mat-select  name="branchCode"
+                    [(ngModel)]="stockReportDetails.branchCode"  
+                    (selectionChange)="onSearchChangeBranch($event.value)">
+
+
+                       <mat-option  *ngFor="let branch of allBranchesDetails ;let i = index" [value]="branch.BranchCode">
+                           {{branch.BranchCode}}</mat-option>
+                   </mat-select> -->
+                   <div [formGroup]='formGroup'>
+                    <input  matInput readonly name="branchCode" type="number" formControlName='BRANCHCODE' oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  maxlength="4"
+                    class="mat-form-field" [(ngModel)]="stockReportDetails.branchCode">
+                  
+                </div> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+
+
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Branch Name</mat-label>
+                    </div>
+                                  <div [formGroup]='formGroup'>
+                    <input readonly matInput name="branchName"
+                    
+                    formControlName='BRANCHNAME' class="mat-form-field" 
+                    [(ngModel)]="stockReportDetails.branchName">
+                  
+                </div>  
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Branch Name should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Branch Name should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="branchNameControl.hasError('required')">
+                        Branch Name <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Name of Borrower</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput readonly name="nameOfBorrower"  formControlName='NAMEOFBORROWER'  [(ngModel)]="stockReportDetails.nameOfBorrower" class="mat-form-field">
+                   </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Name of Borrower should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Name of Borrower should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="nameOfBorrowerFormControl.hasError('required')">
+                        Name of Borrower <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+           
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Team Leader / RRLH</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput name="rMCreditHub"  formControlName='RMCREDITHUB'
+                     [(ngModel)]="stockReportDetails.rMCreditHub" maxlength="35"  class="mat-form-field">
+                  
+                </div>  <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Name of Group should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Name of Group should be atleast of length 7
+                    </mat-error> -->
+                    <mat-error *ngIf="rMCreditHubFormControl.hasError('required')">
+                        Team Leader / RRLH <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Stock Report Cycle</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <!-- <input matInput name="stockReportCycle" formControlName='STOCKREPORT'
+                     [(ngModel)]="stockReportDetails.stockReportCycle"   class="mat-form-field"> -->
+                   
+
+                    <mat-select   name='stockReportCycle' formControlName='STOCKREPORT' (ngModelChange)="onChange($event)" 
+                    [(ngModel)]="stockReportDetails.stockReportCycle" >
+                        <mat-option *ngFor="let businessSegment of stock" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select>
+
+                   </div> <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Customer Status should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Customer Status should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="stockReportCycleFormControl.hasError('required')">
+                        Stock Report Cycle<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+
+                    <mat-label>
+                       
+                        Year</mat-label>
+                    </div>
+                        <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="all2QTRConductedBy" formControlName='2QTR'  [(ngModel)]="stockInspectionDetails.all2QTRConductedBy"  class="mat-form-field">
+                  </div> -->
+                  <div [formGroup]='formGroup'>
+                    <mat-select   name='year' formControlName='year'
+                    [(ngModel)]="stockReportDetails.year">
+                        <mat-option *ngFor="let businessSegment of year" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select> 
+                </div>
+                    <mat-error *ngIf="yearFormControl.hasError('required')">
+                       Year <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+ 
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Limit (Amount in Million)</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput readonly name="limit" type="number" formControlName='LIMIT'
+                     [(ngModel)]="stockReportDetails.limit" class="mat-form-field" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  maxlength="15">
+                    </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        CNIC should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        CNIC should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="limitFormControl.hasError('required')">
+                        Limit<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType === 'Annualy'">
+<!-- <mat-grid-title>
+    <mat-checkbox >Check me!</mat-checkbox>
+</mat-grid-title> -->
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <!-- <mat-checkbox  (click)="toggle()" >Not Applicable</mat-checkbox> -->
+                      
+                        <div class="Required">
+                            
+                        <mat-label>
+                           Yearly </mat-label>
+                         </div>
+                        <!-- <input matInput name="dec" [(ngModel)]="stockReportDetails.dec"  class="mat-form-field"> -->
+                       
+                        <!-- <input type='date' matInput max="2040-01-02" name="yearly"  [(ngModel)]="stockReportDetails.yearly"> -->
+                        <mat-select   name='yearly'
+                        [(ngModel)]="stockReportDetails.yearly">
+                            <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                              {{businessSegment.viewValue}}
+                            </mat-option>
+                          </mat-select> 
+             
+                        <!-- <mat-datepicker-toggle matSuffix [for]="picker12"></mat-datepicker-toggle>
+                        <mat-datepicker #picker12></mat-datepicker>  -->
+                    </mat-form-field>
+                </mat-grid-tile>
+        </div>
+
+        <div *ngIf="selectedType === 'SemiAnually'">
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>1st Semi Annualy</mat-label>
+                   </div>
+                    <!-- <input matInput name="may" [(ngModel)]="stockReportDetails.may"  class="mat-form-field"> -->
+                  
+                    <!-- <input type='date' max="2040-01-02" matInput  name="st1Quarter"  [(ngModel)]="stockReportDetails.st1Quarter"> -->
+                    <mat-select   name='stsemianually'
+                    [(ngModel)]="stockReportDetails.stsemianually">
+                        <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select> 
+         
+                
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-datepicker #picker5></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                      2nd SemiAnually </mat-label>
+                     </div>
+                    <!-- <input matInput name="dec" [(ngModel)]="stockReportDetails.dec"  class="mat-form-field"> -->
+                
+                    <!-- <input type='date' max="2040-01-02" matInput  name="nd2qauter"  [(ngModel)]="stockReportDetails.nd2qauter"> -->
+                    <mat-select   name='ndsemianually'
+                    [(ngModel)]="stockReportDetails.ndsemianually">
+                        <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select> 
+         
+                
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker12"></mat-datepicker-toggle>
+                    <mat-datepicker #picker12></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            </div>
+            <div *ngIf="selectedType === 'Quaterly'">
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>1st Quarterly</mat-label>
+                       </div>
+                        <!-- <input matInput name="mar"  [(ngModel)]="stockReportDetails.mar"  class="mat-form-field">
+                       -->
+                        <!-- <input type='date' max="2040-01-02" matInput  name="stsemianually"  [(ngModel)]="stockReportDetails.stsemianually"> -->
+                        <mat-select   name='st1quater'
+                        [(ngModel)]="stockReportDetails.st1quater">
+                            <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                              {{businessSegment.viewValue}}
+                            </mat-option>
+                          </mat-select> 
+             
+                      <!-- <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                      <mat-datepicker #picker3></mat-datepicker>  -->
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            2nd Quarterly</mat-label>
+                          </div>
+                        <!-- <input matInput name="june"  [(ngModel)]="stockReportDetails.june"  class="mat-form-field">
+                       -->
+                        <!-- <input type='date' max="2040-01-02" matInput  name="ndsemianually"  [(ngModel)]="stockReportDetails.ndsemianually"> -->
+                    
+                        <mat-select   name='nd2qauter'
+                        [(ngModel)]="stockReportDetails.nd2qauter">
+                            <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                              {{businessSegment.viewValue}}
+                            </mat-option>
+                          </mat-select> 
+             
+                        <!-- <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                        <mat-datepicker #picker6></mat-datepicker>  -->
+                    </mat-form-field>
+                </mat-grid-tile>
+                
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            3rd Quarterly</mat-label>
+                 </div>
+                        <!-- <input matInput name="sep"[(ngModel)]="stockReportDetails.sep"  class="mat-form-field">
+                    -->
+                        <!-- <input type='date' max="2040-01-02" matInput  name="rd3quater"  [(ngModel)]="stockReportDetails.rd3quater"> -->
+                        <mat-select   name='rd3quater'
+                        [(ngModel)]="stockReportDetails.rd3quater">
+                            <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                              {{businessSegment.viewValue}}
+                            </mat-option>
+                          </mat-select> 
+             
+                      <!-- <mat-datepicker-toggle matSuffix [for]="picker9"></mat-datepicker-toggle>
+                      <mat-datepicker #picker9></mat-datepicker>  -->
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                        4th Quarterly </mat-label>
+                         </div>
+                        <!-- <input matInput name="dec" [(ngModel)]="stockReportDetails.dec"  class="mat-form-field"> -->
+                    
+                        <!-- <input type='date' max="2040-01-02" matInput  name="th4Quarter"  [(ngModel)]="stockReportDetails.th4Quarter"> -->
+                        <mat-select   name='th4quater'
+                               [(ngModel)]="stockReportDetails.th4quater">
+                                   <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                                     {{businessSegment.viewValue}}
+                                   </mat-option>
+                                 </mat-select> 
+                    
+                        <!-- <mat-datepicker-toggle matSuffix [for]="picker12"></mat-datepicker-toggle>
+                        <mat-datepicker #picker12></mat-datepicker>  -->
+                    </mat-form-field>
+                </mat-grid-tile>
+                </div>
+                <div *ngIf="selectedType === 'Monthly'">
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <div class="Required">
+                            <mat-label>Jan</mat-label>
+                            </div>
+                          <!-- <div [formGroup]='formGroup'>
+                           <input type='date' matInput name="jan" formControlName='JAN' [(ngModel)]="stockReportDetails.jan">
+                         </div> -->  <div [formGroup]='formGroup'>
+                    <mat-select   name='jan' formControlName='JAN'
+                    [(ngModel)]="stockReportDetails.jan">
+                        <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select> 
+                </div>
+                           
+                             <!-- <div [formGroup]='formGroup'>
+                           <input type='date'  matInput name="jan" formControlName='JAN' [(ngModel)]="stockReportDetails.jan">
+                         </div> -->
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>  -->
+                             
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <div class="Required">
+                            <mat-label>Feb</mat-label>
+                            </div>
+                            
+                                <mat-select   name='feb'
+                                [(ngModel)]="stockReportDetails.feb">
+                                    <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                                      {{businessSegment.viewValue}}
+                                    </mat-option>
+                                  </mat-select> 
+                            
+                                      
+                            <!-- <div [formGroup]='formGroup'>
+                            <input matInput name="feb"  [(ngModel)]="stockReportDetails.feb"  class="mat-form-field">
+                          </div> -->
+                          <!-- <input type='date' matInput name="feb"  [(ngModel)]="stockReportDetails.feb"> -->
+        <!--                 
+                          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                          <mat-datepicker #picker2></mat-datepicker>  -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <div class="Required">
+                            <mat-label>March</mat-label>
+                           </div>
+                            <!-- <input matInput name="mar"  [(ngModel)]="stockReportDetails.mar"  class="mat-form-field">
+                           -->
+                            <!-- <input type='date' matInput  name="mar"  [(ngModel)]="stockReportDetails.mar"> -->
+                        
+                            <mat-select   name='mar'
+                            [(ngModel)]="stockReportDetails.mar">
+                                <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                                  {{businessSegment.viewValue}}
+                                </mat-option>
+                              </mat-select> 
+                        
+                          <!-- <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                          <mat-datepicker #picker3></mat-datepicker>  -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <div class="Required">
+                            <mat-label>Apr</mat-label>
+                            </div>
+                            <!-- <input matInput name="apr"  [(ngModel)]="stockReportDetails.apr"  class="mat-form-field"> -->
+                         
+                            <!-- <input type='date' matInput  name="apr"  [(ngModel)]="stockReportDetails.apr"> -->
+                        
+                            
+                            <mat-select   name='apr'
+                            [(ngModel)]="stockReportDetails.apr">
+                                <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                                  {{businessSegment.viewValue}}
+                                </mat-option>
+                              </mat-select> 
+                        
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                            <mat-datepicker #picker4></mat-datepicker>  -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <div class="Required">
+                            <mat-label>May</mat-label>
+                           </div>
+                            <!-- <input matInput name="may" [(ngModel)]="stockReportDetails.may"  class="mat-form-field"> -->
+                          
+                            <!-- <input type='date' matInput  name="may"  [(ngModel)]="stockReportDetails.may"> -->
+                        
+                            <mat-select   name='may'
+                            [(ngModel)]="stockReportDetails.may">
+                                <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                                  {{businessSegment.viewValue}}
+                                </mat-option>
+                              </mat-select> 
+                        
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                            <mat-datepicker #picker5></mat-datepicker>  -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <div class="Required">
+                            <mat-label>
+                                June</mat-label>
+                              </div>
+                            <!-- <input matInput name="june"  [(ngModel)]="stockReportDetails.june"  class="mat-form-field">
+                           -->
+                            <!-- <input type='date' matInput  name="june"  [(ngModel)]="stockReportDetails.june"> -->
+                        
+                            <mat-select   name='june'
+                            [(ngModel)]="stockReportDetails.june">
+                                <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                                  {{businessSegment.viewValue}}
+                                </mat-option>
+                              </mat-select> 
+                        
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                            <mat-datepicker #picker6></mat-datepicker>  -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                   
+                   
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <div class="Required">
+                            <mat-label>
+                               July</mat-label>
+                               </div>
+        
+                            <!-- <input matInput name="july" [(ngModel)]="stockReportDetails.july"  class="mat-form-field"> -->
+                    
+                            <mat-select   name='july'
+                            [(ngModel)]="stockReportDetails.july">
+                                <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                                  {{businessSegment.viewValue}}
+                                </mat-option>
+                              </mat-select> 
+                        
+                            <!-- <input type='date' matInput  name="july"  [(ngModel)]="stockReportDetails.july"> -->
+                        
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle> -->
+                            <!-- <mat-datepicker #picker7></mat-datepicker>  -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                   
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <div class="Required">
+                            <mat-label>
+                               August</mat-label>
+                              </div>
+                            <!-- <input matInput name="aug"  [(ngModel)]="stockReportDetails.aug"  class="mat-form-field"> -->
+                          
+                            <!-- <input type='date' matInput name="aug"  [(ngModel)]="stockReportDetails.aug"> -->
+                            
+                            <mat-select   name='aug'
+                            [(ngModel)]="stockReportDetails.aug">
+                                <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                                  {{businessSegment.viewValue}}
+                                </mat-option>
+                              </mat-select> 
+                        
+                        
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker8"></mat-datepicker-toggle>
+                            <mat-datepicker #picker8></mat-datepicker>  -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <div class="Required">
+                            <mat-label>
+                                Sep</mat-label>
+                     </div>
+                            <!-- <input matInput name="sep"[(ngModel)]="stockReportDetails.sep"  class="mat-form-field">
+                        -->
+                            <!-- <input type='date' matInput  name="sep"  [(ngModel)]="stockReportDetails.sep"> -->
+                        
+                            <mat-select   name='sep'
+                            [(ngModel)]="stockReportDetails.sep">
+                                <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                                  {{businessSegment.viewValue}}
+                                </mat-option>
+                              </mat-select> 
+                        
+                          <!-- <mat-datepicker-toggle matSuffix [for]="picker9"></mat-datepicker-toggle>
+                          <mat-datepicker #picker9></mat-datepicker>  -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <div class="Required">
+                            <mat-label>
+                                Oct</mat-label>
+                                </div>
+                            <!-- <input matInput name="oct"  [(ngModel)]="stockReportDetails.oct"  class="mat-form-field"> -->
+<!--                          
+                            <input type='date' matInput name="oct"  [(ngModel)]="stockReportDetails.oct"> -->
+                        
+                            <mat-select   name='oct'
+                            [(ngModel)]="stockReportDetails.oct">
+                                <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                                  {{businessSegment.viewValue}}
+                                </mat-option>
+                              </mat-select> 
+                        
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker10"></mat-datepicker-toggle>
+                            <mat-datepicker #picker10></mat-datepicker>  -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <div class="Required">
+                            <mat-label>
+                                Nov</mat-label>
+                               </div>
+        
+                               <mat-select   name='nov'
+                               [(ngModel)]="stockReportDetails.nov">
+                                   <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                                     {{businessSegment.viewValue}}
+                                   </mat-option>
+                                 </mat-select> 
+                            <!-- <input matInput name="nov" [(ngModel)]="stockReportDetails.nov"  class="mat-form-field"> -->
+                        
+                            <!-- <input type='date' matInput  name="nov"  [(ngModel)]="stockReportDetails.nov"> -->
+                        
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                            <mat-datepicker #picker11></mat-datepicker>  -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                   
+                    <mat-grid-tile>
+                        <mat-form-field class="example-full-width">
+                            <div class="Required">
+                            <mat-label>
+                               Dec </mat-label>
+                             </div>
+                             
+                            <mat-select   name='dec'
+                            [(ngModel)]="stockReportDetails.dec">
+                                <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                                  {{businessSegment.viewValue}}
+                                </mat-option>
+                              </mat-select> 
+                            <!-- <input matInput name="dec" [(ngModel)]="stockReportDetails.dec"  class="mat-form-field"> -->
+                        
+                            <!-- <input type='date' matInput  name="dec"  [(ngModel)]="stockReportDetails.dec">
+                         -->
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker12"></mat-datepicker-toggle>
+                            <mat-datepicker #picker12></mat-datepicker>  -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    
+                </div>
+                
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                           Remarks </mat-label>
+                         </div>
+                         
+                        <!-- <mat-select   name='dec'
+                        [(ngModel)]="stockReportDetails.dec">
+                            <mat-option *ngFor="let businessSegment of dateformat" [value]="businessSegment.value" >
+                              {{businessSegment.viewValue}}
+                            </mat-option>
+                          </mat-select>  -->
+                        <!-- <input matInput name="dec" [(ngModel)]="stockReportDetails.dec"  class="mat-form-field"> -->
+                    
+                        <input type='text' matInput  name="remarks"  [(ngModel)]="stockReportDetails.remarks" maxlength="100">
+                    
+                        <!-- <mat-datepicker-toggle matSuffix [for]="picker12"></mat-datepicker-toggle>
+                        <mat-datepicker #picker12></mat-datepicker>  -->
+                    </mat-form-field>
+                </mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile> <button style="
+            background-color: #00AA97;
+                height:48px ;
+                width:250px !important;
+                font-size:20px !important;" mat-raised-button color="primary" (click)="validaions();">Save to Database</button>
+ 
+             <h1 style="color:white">hiiiiiiiiiii</h1>   <button style="
+                background-color: #00AA97;
+                    height:48px ;
+                    width:100px !important;
+                    font-size:20px !important;" mat-raised-button color="primary"  (click)="goback();">Go Back</button>
+            </mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+        </mat-grid-list>
+    </form>
+
+</mat-card>
+
+
+
+<br>
+
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">Stock / Receivable Report – Tickler (Hypo)” </mat-card>
+<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column">
+    <div fxFlex>
+
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" style="color : #00AA97;">
+        </mat-form-field>
+        <button mat-raised-button   style="
+        background-color: #00AA97;
+            " (click)="exporter.exportTable('xlsx', {fileName:'Stock Report ', sheet: 'Stock Report'})">Generate Report</button>
+        <table mat-table [dataSource]="dataSource" matTableExporter #exporter="matTableExporter" class="mat-elevation-z8">
+            <ng-container matColumnDef="primeNumber">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Prime Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.primeNumber}} </td>
+            </ng-container>
+            <ng-container matColumnDef="businessSegment">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Name of Business Segment </th>
+                <td mat-cell *matCellDef="let element"> {{element.businessSegment}} </td>
+            </ng-container>
+             <ng-container matColumnDef="region" >
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Region </th>
+                <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+            </ng-container>
+            <ng-container matColumnDef="branchCode">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Branch Code </th>
+                <td mat-cell *matCellDef="let element"> {{element.branchCode}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="branchName">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Branch Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.branchName}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="nameOfBorrower">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Branch Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.nameOfBorrower}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="rMCreditHub">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Team Leader / RRLH </th>
+                <td mat-cell *matCellDef="let element"> {{element.rMCreditHub}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="limit">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Limit </th>
+                <td mat-cell *matCellDef="let element"> {{element.limit}} </td>
+            </ng-container>
+            <ng-container matColumnDef="stockReportCycle">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Stock Report Cycle</th>
+                <td mat-cell *matCellDef="let element"> {{element.stockReportCycle}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="year">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Year</th>
+                <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="jan">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> January </th>
+                <!-- <td mat-cell *matCellDef="let element"> {{element.jan|date:'MM/dd/yyyy'}} </td> -->
+                       <td mat-cell *matCellDef="let element"> {{element.jan}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="feb">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Feburary </th>
+                <td mat-cell *matCellDef="let element"> {{element.feb}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="mar">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> March</th>
+                <td mat-cell *matCellDef="let element"> {{element.mar}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="apr">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> April</th>
+                <td mat-cell *matCellDef="let element"> {{element.apr}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="may">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> May </th>
+                <td mat-cell *matCellDef="let element"> {{element.may}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="june">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> June </th>
+                <td mat-cell *matCellDef="let element"> {{element.june}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="july">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> July </th>
+                <td mat-cell *matCellDef="let element"> {{element.july}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="aug">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> August </th>
+                <td mat-cell *matCellDef="let element"> {{element.aug}} </td>
+            </ng-container>
+            <ng-container matColumnDef="sep">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> September </th>
+                <td mat-cell *matCellDef="let element"> {{element.sep}} </td>
+            </ng-container>
+            <ng-container matColumnDef="oct">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> October</th>
+                <td mat-cell *matCellDef="let element"> {{element.oct}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nov">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Novemeber </th>
+                <td mat-cell *matCellDef="let element"> {{element.nov}} </td>
+            </ng-container>
+            <ng-container matColumnDef="dec">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> December </th>
+                <td mat-cell *matCellDef="let element"> {{element.dec}} </td>
+            </ng-container>
+            <ng-container matColumnDef="yearly">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> yearly </th>
+                <td mat-cell *matCellDef="let element"> {{element.yearly}} </td>
+            </ng-container>
+            <ng-container matColumnDef="st1quater">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> 1st Quarter </th>
+                <td mat-cell *matCellDef="let element"> {{element.st1quater}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="nd2qauter">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> 2nd Quarter </th>
+                <td mat-cell *matCellDef="let element"> {{element.nd2qauter}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="rd3quater">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> 3rd Quarter </th>
+                <td mat-cell *matCellDef="let element"> {{element.rd3quater}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="th4quater">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> 4th Quarter </th>
+                <td mat-cell *matCellDef="let element"> {{element.th4quater}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="stsemianually">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> stsemianually </th>
+                <td mat-cell *matCellDef="let element"> {{element.stsemianually}} </td>
+            </ng-container>
+            <ng-container matColumnDef="remarks">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Remarks </th>
+                <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="ndsemianually">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> 2nd Quarter </th>
+                <td mat-cell *matCellDef="let element"> {{element.ndsemianually}} </td>
+            </ng-container>
+            <ng-container matColumnDef="createdBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Created By</th>
+                <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="modifiedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Modified By </th>
+                <td mat-cell *matCellDef="let element"> {{element.modifiedBy}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="modifiedOn">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Modified On </th>
+                <td mat-cell *matCellDef="let element"> {{element.modifiedOn}} </td>
+            </ng-container>
+            <ng-container matColumnDef="createdOn">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Created On </th>
+                <td mat-cell *matCellDef="let element"> {{element.createdOn}} </td>
+            </ng-container>
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <!-- <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:100px !important;
+                        font-size:20px !important;"  class="btn-small btn-success"  mat-raised-button color="primary">Edit</button>
+              
+                </th> -->
+                <td mat-cell *matCellDef="let stockReportData">
+                    <div *ngIf="hideEdit === 'false'">
+                    <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="editCustomerDemographic(stockReportData)" class="btn-small btn-success"  mat-raised-button color="primary">Edit</button>
+                 </div>
+                </td>
+              </ng-container>
+
+
+
+              <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>
+                    <!-- <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" mat-raised-button color="warn">Delete</button> -->
+              
+                </th>
+                <td mat-cell *matCellDef="let customerDemographicData">
+                    <div *ngIf="hideDelete === 'false'">
+                    <button style="
+                    
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="deleteCustomer(customerDemographicData.primeNumber)" mat-raised-button color="warn">Delete</button>
+                 </div>
+                </td>
+              </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+        </table>
+       
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <!-- <button mat-raised-button color="primary" (click)="ExportTOExcel()">Export as Excel</button> -->
+      
+    </div>
+</div>

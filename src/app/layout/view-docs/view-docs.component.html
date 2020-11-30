@@ -1,0 +1,43 @@
+<!-- <p>view-docs works!</p> -->
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">View Docs</mat-card>
+<mat-card style="auto:">
+    <mat-grid-list cols="3" rowHeight="75px" gutterSize="1px">
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+                <mat-label class="mat-form-field-should-float">Prime Number</mat-label>
+                <div [formGroup]='formGroup'>
+                <input matInput formControlName="PRIMENUMBER" name="primeNumber" placeholder="Prime Number" class="mat-form-field"
+        
+                    [(ngModel)]="sbpWaiverDetails.primeNumber"  #primenumber  >
+                </div>
+               <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                    Prime Number should be atleast of length 6
+                </mat-error> -->
+                <!-- <mat-error *ngIf="primeFormControl.errors.maxLength">
+                    Prime Number should be atleast of length 6
+                </mat-error> -->
+                <mat-error *ngIf="primeFormControl.hasError('required')">
+                    Prime Number <strong>required</strong>
+                </mat-error> 
+          
+            </mat-form-field>
+    
+       
+
+        </mat-grid-tile>
+
+
+
+    <mat-grid-tile>    </mat-grid-tile>
+
+    <mat-grid-tile>    </mat-grid-tile>
+    
+    
+
+        <mat-grid-tile> <button style="
+            background-color: #00AA97;
+                height:48px ;
+                width:100px !important;
+                font-size:20px !important;" mat-raised-button color="primary"(click)="docService();">Submit</button></mat-grid-tile>
+    </mat-grid-list>
+   

@@ -1,0 +1,105 @@
+
+
+<!-- 
+<h1 class="mat-display-4" style='align-content: center;'>     CAD DIGITALIZED REPORTING
+</h1>
+
+<h1 class="mat-display-1" style='align-content: center;'>     Credit Administration Department
+</h1>
+ <img src="assets/images/hblll.png" width="300px"  height="150px" class="user-avatar" /> -->
+
+
+ <h1  class="h1">CAD DIGITALIZED REPORTING
+</h1>
+<div class="center">
+    <u style ="color:#00AA97" >
+<h2 (click)='custrout()' href="link.html">Customer Profile</h2>
+<!-- <h2 (click)='condMo()'>Conditions Monitoring – Tracker</h2> -->
+<!-- <h2 (click)='logbook()'>Log Book - Draft CP Review (Non-Loxon)</h2> -->
+<h2 (click)='cplogbook()'> Approved CP Log Book</h2>
+<h2 (click)='Document()'>Documents Deficiency(ies) / Deferral Status Report</h2>
+<h2 (click)='conditions()'>CP Conditions Monitoring – Tracker</h2>
+<h2 (click)='sbpwaivers()'>SBP Waivers (Prudential Regulations)</h2>
+<h2 (click)='ticklers()' (onmouseover)='maria()'>Ticklers ></h2>
+<div *ngIf="disable =='hi'" class="center">
+    <h2 (click)='stockreport()'>	Stock / Receivables Report - Tickler (Hypothecation) </h2>
+
+    <h2 (click)='stockinspection()'> Stock Inspection - Tickler (Hypo) </h2>
+    <h2 (click)='stockinspectionPledge()'>Stock Inspection - Tickler (Pledge)</h2>
+    <!-- <h2 (click)='jointInspection()'>Pledge Joint Stock Inspection</h2> -->
+    <!-- <h2 (click)='insutancetickler()'>Insurance Tickler</h2>
+    <h2 (click)='vakuationExpiry()'>Valuation Expiry Tickler</h2> -->
+    <h2 (click)='legalReview()'>Documentation Legal Review Tickler</h2>
+
+</div>
+<h2 (click)='creditprposal()'>Credit Proposal Renewed but Limit Feeding Pending</h2>
+<h2 (click)='Safein()'>Safe-in / out Register</h2>
+<h2 (click)='vendor()'>Vendor Management</h2>
+<h2 (click)='user()'>User Management</h2>
+<h2 (click)='users()'>View Documents</h2></u>
+
+</div>
+<!-- <div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
+    <div fxFlex>
+        <app-stat [bgClass]="'danger'" [icon]="'dashboard'" [count]="13" [label]="'New Tickets!'"></app-stat>
+    </div>
+    <div fxFlex>
+        <app-stat [bgClass]="'warn'" [icon]="'view_list'" [count]="12" [label]="'New task!'"></app-stat>
+    </div>
+    <div fxFlex>
+        <app-stat [bgClass]="'success'" [icon]="'shopping_cart'" [count]="124" [label]="'New Orders!'"></app-stat>
+    </div>
+    <div fxFlex>
+        <app-stat [bgClass]="'info'" [icon]="'contact_support'" [count]="13" [label]="'New Tickets!'"></app-stat>
+    </div>
+</div>
+
+<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column">
+    <div fxFlex>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="weight">
+                <th mat-header-cell *matHeaderCellDef> Weight </th>
+                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+            </ng-container>
+            <ng-container matColumnDef="symbol">
+                <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>
+
+<div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
+    <div fxFlex *ngFor="let item of places">
+        <mat-card>
+            <img mat-card-image [src]="item.imgSrc">
+            <mat-card-header style="justify-content: center">
+                <mat-card-title>
+                    <h3 class="m-0">{{item.place}}</h3>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    {{item.description}}
+                </p>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <button mat-button>{{item.charge}}</button>
+                <button mat-button>
+                    <mat-icon class="nav-icon">location_on</mat-icon> {{item.location}}
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div> -->

@@ -1,0 +1,54 @@
+
+  <div style="background: url('src\assets\images\HblTower.jpg) no-repeat center center fixed');"></div>
+  <!-- <div style="background: url(src\assets\images\HblTower.jpg') no-repeat center center fixed;"</div> -->
+<div class="login-page">
+   
+    <div class="content">
+        <!-- <h1 class="app-name">Sb Admin Material</h1> -->
+        <!-- <img src="assets/images/download.png" width="1px"  height="50px" class="user-avatar" /> -->
+        <form class="login-form" fxFlex  >
+            <div class="text-center">
+              
+                <img src="assets/images/HBLtower.png" style="align-items:top;" width="400px"  height="300px" class="user-avatar" />
+                <h2 class="app-name">CAD DIGITALIZED REPORTING</h2>
+            </div>
+            <div fxFlex  fxlayout="row" fxlayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <div [formGroup]='formGroup'>
+                        <input  matInput type="text" name="username" formControlName='USERNAME' [(ngModel)]='users.username' placeholder="username">
+                        </div>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <div [formGroup]='formGroup'>
+                        <input matInput type="password" name="password" formControlName='PASSWORD' [(ngModel)]="users.password"  id="" placeholder="Password">
+                        </div>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex  fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 30px 0">
+                <div fxFlex>
+                    <!-- <mat-checkbox color="primary">Remember Me</mat-checkbox> -->
+                </div>
+                <div fxFlex  fxLayoutAlign="end">
+                    <!-- <a href="javascript:void(0)">Forget Password</a> -->
+                </div>
+            </div>
+            <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:400px !important;
+                        font-size:20px !important;" mat-raised-button color="primary" class="w-100" (click)="multipleusers()">Login</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<p style="align-content:centre;">@Copyrights HBL 2020</p>

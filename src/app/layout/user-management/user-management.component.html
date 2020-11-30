@@ -1,0 +1,162 @@
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">User Management
+ </mat-card>
+<div class="col-md-10">
+    <div class="card card-user">
+        <!-- <div class="card-header" style="background-color: rgb(12, 132, 107);">
+            <h5 class="card-title" style="color:white;">User Management</h5>
+        </div> -->
+        <div class="card-body">
+            <form >
+                <div class="row">
+                    <div class="col-md-4 pr-1">
+                        <div class="form-group">
+                              <mat-form-field class="example-full-width">
+                    <mat-label>User ID</mat-label>
+                              <input matInput name="useridname" 
+                            [(ngModel)]="roles.userid" class="mat-form-field">
+                            <!-- <input type="text" name="useridname" [(ngModel)]="roles.userid" class="form-control" placeholder="" value="" > -->
+                         </mat-form-field>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        
+                                   <mat-form-field class="example-full-width">
+                                    <mat-label>Roles</mat-label>
+                              <input matInput name="roleName" 
+                            [(ngModel)]="roles.role" class="mat-form-field">
+                        <!-- <input type="text" name="roleName" [(ngModel)]="roles.role" class="form-control" placeholder="" value="" > -->
+                     </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        
+                        <mat-form-field class="example-full-width">
+                         <mat-label>Region</mat-label>
+                   <input matInput name="region" 
+                 [(ngModel)]="roles.region" class="mat-form-field">
+             <!-- <input type="text" name="roleName" [(ngModel)]="roles.role" class="form-control" placeholder="" value="" > -->
+          </mat-form-field>
+         </div>
+        
+         <div class="form-group">
+                        
+            <mat-form-field class="example-full-width">
+             <mat-label>Created By</mat-label>
+       <input matInput name="creationBy" 
+     [(ngModel)]="roles.creationBy" class="mat-form-field">
+ <!-- <input type="text" name="roleName" [(ngModel)]="roles.role" class="form-control" placeholder="" value="" > -->
+</mat-form-field>
+</div>
+<div class="form-group">
+                        
+    <mat-form-field class="example-full-width">
+     <mat-label>Created Date</mat-label>
+<input matInput name="creationDate" 
+[(ngModel)]="roles.creationDate" class="mat-form-field">
+<!-- <input type="text" name="roleName" [(ngModel)]="roles.role" class="form-control" placeholder="" value="" > -->
+</mat-form-field>
+</div>
+
+                    <!-- <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                        <label>Rights</label>
+                        <div class="checkbox" >
+
+                            <label>
+                                <input type="checkbox"   name="viewName" [(ngModel)]="roles.view" checked="roles.view=='true'" > View
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"   name="editName" [(ngModel)]="roles.edit"  checked="roles.edit=='true'" > Edit
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"   name="deleteName" [(ngModel)]="roles.delete" checked="roles.delete=='true'" >  Delete
+                                </label>
+                            </div>
+                        </div>
+                    </div> -->
+                  
+                       <mat-label>Rights</mat-label>
+                       <br>
+                      <mat-checkbox   name="viewName" [(ngModel)]="roles.view" checked="roles.view=='true'" > View
+                            </mat-checkbox>
+                      <mat-checkbox   name="editName" [(ngModel)]="roles.edit"  checked="roles.edit=='true'" > Edit</mat-checkbox>
+                      <mat-checkbox type="checkbox"   name="deleteName" [(ngModel)]="roles.delete" checked="roles.delete=='true'">
+                    Delete</mat-checkbox>
+                                     
+            </div>
+            <div class="row">
+                    <div class="update ml-auto mr-auto">
+                    <button style="
+            background-color: #00AA97;
+                height:48px ;
+                width:100px !important;
+                font-size:20px !important;" mat-raised-button  (click)="addRoles();" color="primary">Submit</button>
+                        <!-- <button type="submit" class="btn btn-sm btn-success"
+                            (click)="addRoles();">Submit</button> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+
+  <div class="col-md-12">
+    <div class="card mb-3">
+     <mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">Users
+ </mat-card>
+        <div class="card-body table-responsive">
+            <table class="table table-hover table-striped" #TABLE #table>
+                <thead style="font-weight: bold;">
+                    <th>Login ID</th>
+                    <th>Roles</th>
+                    <th>Region</th>
+                    <th>View</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </thead>
+                <tbody>
+                    <tr></tr>
+                    <tr *ngFor="let UserRole of allRolesData">
+                        <td>{{UserRole.userid}}</td>
+                        <td>{{UserRole.role}}</td>
+                        <td>{{UserRole.region}}</td>
+                        <td> <i [hidden]="!(UserRole.view == 'true')" style="color: green;" > &#10004; </i> <i [hidden]="(UserRole.view  == 'true')"> &#10060; </i></td>
+                        <td><i [hidden]="!(UserRole.edit == 'true')" style="color: green;" > &#10004; </i> <i [hidden]="(UserRole.edit  == 'true')"> &#10060; </i></td>
+                        <td><i [hidden]="!(UserRole.delete == 'true')" style="color: green;" > &#10004; </i> <i [hidden]="(UserRole.delete  == 'true')"> &#10060; </i></td>
+                       <td></td>
+                        <td>
+                          <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="onEdit(UserRole)"
+                        class="btn-small btn-success" mat-raised-button color="primary">Edit</button>
+                          <button style="
+                    
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="onDelete(this.roles.userid)"
+                        mat-raised-button color="warn">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> 
+<!-- <script>
+    angular.module('checkboxExample', [])
+      .controller('ExampleController', ['$scope', function($scope) {
+        $scope.checkboxModel = {
+         value1 : 'update',
+         value2 : 'delete',
+         value3 : 'edit'
+       };
+      }]);
+  </script> -->

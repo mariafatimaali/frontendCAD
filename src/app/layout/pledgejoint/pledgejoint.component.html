@@ -1,0 +1,530 @@
+
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">Pledge Joint Inspection</mat-card>
+<mat-card style="auto:">
+    <form>
+       
+        
+        <mat-grid-list cols="3" rowHeight="75px" gutterSize="1px">
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+
+                  
+                    <mat-label class="mat-form-field-should-float">Prime Number</mat-label>
+                </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput formControlName="PRIMENUMBER" name="primeNumber" placeholder="Prime Number" class="mat-form-field"
+                    (focusout)='alphanumeric($event.target.value)' style="text-transform: uppercase"  maxlength="6" minlength="6"
+                        [(ngModel)]="pledgejointDetails.primeNumber"  #primenumber  [attr.disabled]="isDisabled" (focusout)='onFocusOut()'>
+                    </div>
+
+                    <mat-error *ngIf="primeFormControl.hasError('minlength')">
+                        Prime Number should be atleast of length 6
+                    </mat-error>
+                   <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Prime Number should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.errors.maxLength">
+                        Prime Number should be atleast of length 6
+                    </mat-error> -->
+                    <mat-error *ngIf="primeFormControl.hasError('required')">
+                        Prime Number <strong>required</strong>
+                    </mat-error> 
+              
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+       
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Name of Business Segment</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <!-- <mat-select   name='businessSegment' formControlName='BS'
+                        [(ngModel)]="pledgejointDetails.businessSegment">
+                        <mat-option *ngFor="let businessSegment of business" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select> -->
+                      <input   readonly matInput name="businessSegment" formControlName='BS' 
+                      class="mat-form-field" [(ngModel)]="pledgejointDetails.businessSegment" >
+                      </div>
+                      <mat-error *ngIf="businessSegmentFormControl.hasError('required')">
+                        Business Segment is <strong>required</strong>
+                    </mat-error> 
+                      
+                    
+                </mat-form-field>
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Region</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <!-- <mat-select   name='region' formControlName='REGION'
+                        [(ngModel)]="pledgejointDetails.region">
+                            <mat-option *ngFor="let businessSegment of Region" [value]="businessSegment.value" >
+                              {{businessSegment.viewValue}}
+                            </mat-option>
+                          </mat-select> -->
+                          <input  readonly matInput name="region" formControlName='REGION' 
+                          class="mat-form-field" [(ngModel)]="pledgejointDetails.region" >
+                        </div>
+                        <mat-error *ngIf="regionFormControl.hasError('required')">
+                            Region is <strong>required</strong>
+                        </mat-error> 
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Branch Code</mat-label>
+</div>
+
+                    <!-- <mat-select  name="branchCode"
+                    [(ngModel)]="pledgejointDetails.branchCode"  
+                    (selectionChange)="onSearchChangeBranch($event.value)">
+
+
+                       <mat-option  *ngFor="let branch of allBranchesDetails ;let i = index" [value]="branch.BranchCode">
+                           {{branch.BranchCode}}</mat-option>
+                   </mat-select> -->
+                   <div [formGroup]='formGroup'>
+                    <input matInput readonly name="branchCode" formControlName='BRANCHCODE' maxlength="20" class="mat-form-field"
+                        [(ngModel)]="pledgejointDetails.branchCode">
+
+                </div>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+
+
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Branch Name</mat-label>
+                    </div>
+                                  <div [formGroup]='formGroup'>
+                    <input readonly matInput name="branchName" formControlName='BRANCHNAME' class="mat-form-field"
+                     [(ngModel)]="pledgejointDetails.branchName" >
+                  
+                </div>  
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Branch Name should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Branch Name should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="branchNameControl.hasError('required')">
+                        Branch Name <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Name of Borrower</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput readonly  name="nameOfBorrower"  formControlName='NAMEOFBORROWER' 
+                      [(ngModel)]="pledgejointDetails.nameOfBorrower" maxlength="35" class="mat-form-field">
+                   </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Name of Borrower should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Name of Borrower should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="nameOfBorrowerFormControl.hasError('required')">
+                        Name of Borrower<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+           
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>RM Credit Hub</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput name="rMCreditHub"  formControlName='RMCREDIT'
+                     [(ngModel)]="pledgejointDetails.rMCreditHub" maxlength="35" class="mat-form-field">
+                  
+                </div>  <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Name of Group should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Name of Group should be atleast of length 7
+                    </mat-error> -->
+                    <mat-error *ngIf="rMCreditHubFormControl.hasError('required')">
+                        RM Credit Hub <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Limit</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <input matInput readonly type='number' name="limit" formControlName='LIMIT' [(ngModel)]="pledgejointDetails.limit" 
+                    maxlength="15" class="mat-form-field"oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  maxlength="15">
+                   
+                   </div> <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Customer Status should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Customer Status should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="limitFormControl.hasError('required')">
+                        Limit<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Frequency</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                    <!-- <input matInput name="frequency"  formControlName='FREQUENCY' [(ngModel)]="pledgejointDetails.frequency" class="mat-form-field"> -->
+                   
+                
+                    <mat-select   name='frequency' formControlName='FREQUENCY'
+                    [(ngModel)]="pledgejointDetails.frequency">
+                        <mat-option *ngFor="let businessSegment of Frequency" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                     
+                </div>
+
+
+                 
+                    <mat-error *ngIf="frequencyFormControl.hasError('required')">
+                        Frequency <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>March Conducted By</mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="marchConductedBy" formControlName='MARCHCONDUCTEd' [(ngModel)]="pledgejointDetails.marchConductedBy"  class="mat-form-field">
+                  </div> -->
+                  <div [formGroup]='formGroup'>
+                 
+                   
+                
+                    <mat-select   name='marchConductedBy' formControlName='MARCHCONDUCTEd'
+                    [(ngModel)]="pledgejointDetails.marchConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                     
+                </div>
+                    <mat-error *ngIf="marchConductedByFormControl.hasError('required')">
+                        March Conducted By<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>March Conducted Date</mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="marchConductedDate" formControlName='MARCHDATE' [(ngModel)]="pledgejointDetails.marchConductedDate"  class="mat-form-field">
+                  </div> -->
+                  <input matInput  type="date" name="marchConductedDate"  [(ngModel)]="pledgejointDetails.marchConductedDate">
+                 
+                  <!-- <mat-datepicker-toggle matSuffix [for]="picker312"></mat-datepicker-toggle>
+                  <mat-datepicker #picker312></mat-datepicker>  -->
+                    <mat-error *ngIf="marchConductedDateFormControl.hasError('required')">
+                        March Conducted Date <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>June Conducted By</mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="juneConductedBy" formControlName='JUNECONDUCTED' [(ngModel)]="pledgejointDetails.juneConductedBy"  class="mat-form-field">
+                  </div> -->
+                  <div [formGroup]='formGroup'>
+
+                    <mat-select   name='juneConductedBy' formControlName='JUNECONDUCTED'
+                    [(ngModel)]="pledgejointDetails.juneConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                     
+                </div>
+                    <mat-error *ngIf="juneConductedByFormControl.hasError('required')">
+                        June Conducted By <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>June Conducted Date</mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="juneConductedDate" formControlName='JUNEDATE' [(ngModel)]="pledgejointDetails.juneConductedDate"  class="mat-form-field">
+                   </div> -->
+                   <input matInput type="date" name="juneConductedDate"  [(ngModel)]="pledgejointDetails.juneConductedDate">
+                
+                    <mat-error *ngIf="juneConductedDateFormControl.hasError('required')">
+                        June Conducted Date <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Sep Conducted By</mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="sepConductedBy" formControlName='SEPBY' [(ngModel)]="pledgejointDetails.sepConductedBy"  class="mat-form-field">
+                   </div> -->
+                   <div [formGroup]='formGroup'>
+
+                    <mat-select   name='sepConductedBy' formControlName='SEPBY'
+                    [(ngModel)]="pledgejointDetails.sepConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                     </div>
+                    <mat-error *ngIf="sepConductedByFormControl.hasError('required')">
+                        Sep Conducted By <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>
+                        Sep Conducted Date</mat-label>
+                    </div>
+                        <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="sepConductedBy" formControlName='SEPDATE' [(ngModel)]="pledgejointDetails.sepConductedBy"  class="mat-form-field">
+                    </div> -->
+                    <input matInput type="date" name="sepConductedDate"  [(ngModel)]="pledgejointDetails.sepConductedDate">
+                 
+                   
+                    <mat-error *ngIf="sepConductedDateFormControl.hasError('required')">
+                        Sep Conducted Date*<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+           
+           
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>
+                        Dec Conducted by</mat-label></div>
+                        <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="decConductedBy" formControlName='DECBY' [(ngModel)]="pledgejointDetails.decConductedBy"  class="mat-form-field">
+                  </div> -->
+                  <div [formGroup]='formGroup'>
+
+                    <mat-select   name='decConductedBy' formControlName='DECBY'
+                    [(ngModel)]="pledgejointDetails.decConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                     </div>
+                    <mat-error *ngIf="decConductedByControl.hasError('required')">
+                        Dec Conducted by<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>
+                        Dec Conducted Date</mat-label>
+                    </div>
+                        <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="decConductedDate" formControlName='DECDATE' [(ngModel)]="pledgejointDetails.decConductedDate"  class="mat-form-field">
+                   </div> -->
+                   <input matInput type="date" name="decConductedDate"  [(ngModel)]="pledgejointDetails.decConductedDate">
+<!--                  
+                   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                   <mat-datepicker #picker1></mat-datepicker>  -->
+                    <mat-error *ngIf="decConductedDateFormControl.hasError('required')">
+                      Dec Conducted Date<strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>  </mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile> <button style="
+            background-color: #00AA97;
+                height:48px ;
+                width:250px !important;
+                font-size:20px !important;" mat-raised-button color="primary"(click)=" validaions();">Save to Database</button>
+           
+            <h1 style="color:white">hiiiiiiiiiii</h1>   <button style="
+               background-color: #00AA97;
+                   height:48px ;
+                   width:100px !important;
+                   font-size:20px !important;" mat-raised-button color="primary"  (click)="goback();">Go Back</button></mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+        </mat-grid-list>
+    </form>
+
+</mat-card>
+
+
+
+<br>
+
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">Pledge Joint Inspection's Data</mat-card>
+<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column">
+    <div fxFlex>
+
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" style="color : #00AA97;">
+        </mat-form-field>
+        <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
+            <ng-container matColumnDef="primeNumber">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Prime Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.primeNumber}} </td>
+            </ng-container>
+            <ng-container matColumnDef="businessSegment">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Name of Business Segment </th>
+                <td mat-cell *matCellDef="let element"> {{element.businessSegment}} </td>
+            </ng-container>
+             <ng-container matColumnDef="region" >
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Region </th>
+                <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+            </ng-container>
+            <ng-container matColumnDef="branchCode">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Branch Code </th>
+                <td mat-cell *matCellDef="let element"> {{element.branchCode}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="branchName">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Branch Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.branchName}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="nameOfBorrower">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">Name Of Borrower</th>
+                <td mat-cell *matCellDef="let element"> {{element.nameOfBorrower}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="rMCreditHub">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> RM Credit Hub</th>
+                <td mat-cell *matCellDef="let element"> {{element.rMCreditHub}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="limit">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Limit </th>
+                <td mat-cell *matCellDef="let element"> {{element.limit}} </td>
+            </ng-container>
+            <ng-container matColumnDef="frequency">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Frequency </th>
+                <td mat-cell *matCellDef="let element"> {{element.frequency}} </td>
+            </ng-container> 
+           
+            <ng-container matColumnDef="marchConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> March Conducted By</th>
+                <td mat-cell *matCellDef="let element"> {{element.marchConductedBy}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="marchConductedDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">March Conducted Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.marchConductedDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="juneConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> June Conducted By </th>
+                <td mat-cell *matCellDef="let element"> {{element.juneConductedBy}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="juneConductedDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> June Conducted Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.juneConductedDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="sepConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Sep Conducted By </th>
+                <td mat-cell *matCellDef="let element"> {{element.sepConductedBy}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="sepConductedDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">Sep Conducted Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.sepConductedDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="decConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Dec Conducted By</th>
+                <td mat-cell *matCellDef="let element"> {{element.decConductedBy}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="decConductedDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">Dec Conducted Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.decConductedDate |date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+         
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <!-- <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:100px !important;
+                        font-size:20px !important;"  class="btn-small btn-success"  mat-raised-button color="primary">Edit</button>
+              
+                </th> -->
+                <td mat-cell *matCellDef="let customerDemographicData">
+                    <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="editCustomerDemographic(customerDemographicData)" class="btn-small btn-success"  mat-raised-button color="primary">Edit</button>
+                 
+                </td>
+              </ng-container>
+
+
+
+              <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>
+                    <!-- <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" mat-raised-button color="warn">Delete</button> -->
+              
+                </th>
+                <td mat-cell *matCellDef="let customerDemographicData">
+                    <button style="
+                    
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="deleteCustomer(customerDemographicData.primeNumber)" mat-raised-button color="warn">Delete</button>
+                 
+                </td>
+              </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

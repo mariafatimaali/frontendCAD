@@ -1,0 +1,60 @@
+<mat-toolbar  style="background-color: #00AA97" class="fix-nav">
+    <button type="button" mat-icon-button class="visible-md" (click)="toggleSidebar()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+  
+    <!-- <img src="assets/images/hblll.png" width="100px"  height="50px" class="user-avatar" /> -->
+     
+    <!-- <div class="nav-brand" style="color:aliceblue; background-color: #008269; font-size: larger;">
+        CAD DIGITALIZED REPORTING
+    </div> -->
+    <div class="nav-brand" style="color:aliceblue; background-color: #00AA97; font-size: larger;">
+      HBL  CAD DIGITALIZED REPORTING
+    </div>
+    <!-- <form class="hidden-sm" style="margin-left: 20px; margin-top: 5px">
+        <mat-form-field>
+            <input matInput [placeholder]="'Search' | translate">
+        </mat-form-field>
+    </form> -->
+    <span class="nav-spacer"></span>
+    <a class="hidden-sm" mat-raised-button style="margin-right: 10px">
+      {{user}}   &nbsp; {{datee}}
+    </a>
+    <!-- <button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="language">
+        <mat-icon>language</mat-icon>
+    </button> -->
+    <!-- <mat-menu #language="matMenu">
+        <button mat-menu-item (click)="changeLang('en')">
+            <span>{{ 'English' | translate }}</span>
+        </button>
+        <button mat-menu-item (click)="changeLang('fr')">
+            <span>{{ 'French' | translate }}</span>
+        </button>
+        <button mat-menu-item (click)="changeLang('ur')">
+            <span>{{ 'Urdu' | translate }}s</span>
+        </button>
+    </mat-menu> -->
+    <!-- <button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="profile">
+        <mat-icon>account_circle</mat-icon>
+    </button> -->
+    <!-- <mat-menu #profile="matMenu">
+        <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            <span>{{ 'Profile' | translate }}</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>inbox</mat-icon>
+            <span>{{ 'Inbox' | translate }}</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>{{ 'Settings' | translate }}</span>
+        </button>
+    </mat-menu> -->
+    <!-- <button mat-icon-button (click)="onLoggedout()">
+        {{user}}
+    </button> -->
+    <button mat-icon-button (click)="onLoggedout()">
+        <mat-icon>exit_to_app</mat-icon>
+    </button>
+</mat-toolbar>

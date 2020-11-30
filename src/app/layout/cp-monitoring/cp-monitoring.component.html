@@ -1,0 +1,529 @@
+
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">CP Conditions Monitoring</mat-card>
+<mat-card style="auto:">
+    <form>
+
+
+        <mat-grid-list cols="3" rowHeight="75px" gutterSize="1px">
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label class="mat-form-field-should-float">Prime Number</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <input matInput formControlName="PRIMENUMBER" name="primeNumber" placeholder="Prime Number"
+                            class="mat-form-field"(focusout)='alphanumeric($event.target.value)' style="text-transform: uppercase"  maxlength="6"
+                            [(ngModel)]="cplogbookDraftDetails.primeNumber" (focusout)='findOne()'  [attr.disabled]="isDisabled" #primenumber 
+                            (focusout)='onFocusOut()' >
+                    </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Prime Number should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.errors.maxLength">
+                        Prime Number should be atleast of length 6
+                    </mat-error> -->
+                    <mat-error *ngIf="primeFormControl.hasError('required')">
+                        Prime Number <strong>required</strong>
+                    </mat-error>
+
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Name of Business Segment</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <input  readonly matInput name="businessSegment" formControlName='BS' 
+                        class="mat-form-field" [(ngModel)]="cplogbookDraftDetails.businessSegment" >
+                        <!-- <mat-select  required name='businessSegment' formControlName='BS'
+                        [(ngModel)]="cplogbookDraftDetails.businessSegment" (change)='findOne()'>
+                        <mat-option *ngFor="let businessSegment of business" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select> -->
+                      </div>
+                      <mat-error *ngIf="businessSegmentFormControl.hasError('required')">
+                        Business Segment is <strong>required</strong>
+                    </mat-error> 
+                    
+                </mat-form-field>
+
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Region</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <!-- <mat-select  required name='region' formControlName='REGION'
+                        [(ngModel)]="cplogbookDraftDetails.region">
+                            <mat-option *ngFor="let businessSegment of Region" [value]="businessSegment.value" >
+                              {{businessSegment.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                          -->
+                          <input readonly matInput name="region" formControlName='REGION' 
+                          class="mat-form-field" [(ngModel)]="cplogbookDraftDetails.region" >
+                         
+                        </div>
+                        <mat-error *ngIf="regionFormControl.hasError('required')">
+                            Region is <strong>required</strong>
+                        </mat-error> 
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+
+
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Branch Code</mat-label>
+</div>
+                    <!-- <mat-select  name="branchCode"
+                     [(ngModel)]="cplogbookDraftDetails.branchCode"  formControlName='BRANCHCODE' (input)="onSearchChangeBranch($event.target.value)">
+
+
+                         <mat-option  *ngFor="let branch of allBranchesDetails ;let i = index" [value]="i">
+                            {{branch.BranchCode}}</mat-option> 
+                    </mat-select> -->
+                     <div [formGroup]='formGroup'>
+                    <input  readonly matInput name="branchCode" type="number" formControlName='BRANCHCODE' oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  maxlength="4"
+                    class="mat-form-field" [(ngModel)]="cplogbookDraftDetails.branchCode">
+                  
+                </div>   
+                    <!-- <mat-error *ngIf="BranchCodeFormControl.hasError('minLength')">
+
+                        Branch Code should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="BranchCodeFormControl.hasError('maxLength')">
+                        Branch Code should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="BranchCodeFormControl.hasError('required')">
+                        Branch Code <strong>required</strong>
+                    </mat-error>  
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+
+
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Name of Borrower</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <input   readonly matInput name="nameOfBorrower" formControlName='NAMEOFBORROWER' maxlength="35" class="mat-form-field"
+                            [(ngModel)]="cplogbookDraftDetails.nameOfBorrower">
+
+                    </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Branch Name should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Branch Name should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="branchNameControl.hasError('required')">
+                        Name of Borrower <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>
+                        CP Approval No</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <input matInput name="cpApprovalNo" formControlName='CPAPPROVAL' 
+                            [(ngModel)]="cplogbookDraftDetails.cpApprovalNo"  maxlength='35' class="mat-form-field">
+                    </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Name of Borrower should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Name of Borrower should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="cpApprovalNoFormControl.hasError('required')">
+                        CP Approval No<strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>CP Approval Date </mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                        <input matInput placeholder="Prime Number" formControlName='CPAPPROVALDATE'
+                            name="cpApprovalDate" class="mat-form-field"
+                            [(ngModel)]="cplogbookDraftDetails.cpApprovalDate">
+                    </div> -->
+                    <input type="date" data-date-format="DD MM YYYY"  max="2040-01-02" matInput  name="cpApprovalDate"  [(ngModel)]="cplogbookDraftDetails.cpApprovalDate"  placeholder="dd-mm-yyyy">
+                 
+                
+                    <mat-error *ngIf="cpApprovalDateFormControl.hasError('required')">
+                        CP Approval Date <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Date Of Disbursement</mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                        <input matInput name="dateOfDisbursement" formControlName='DATEOFDISBURSEMENT'
+                            [(ngModel)]="cplogbookDraftDetails.dateOfDisbursement" placeholder="Prime Number"
+                            class="mat-form-field">
+
+                    </div> -->
+                    <input matInput type="date" name="dateOfDisbursement" 
+                     [(ngModel)]="cplogbookDraftDetails.dateOfDisbursement" max="2040-01-02">
+                
+                
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Customer Status should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Customer Status should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="dateOfDisbursementFormControl.hasError('required')">
+                        Date Of Disbursement <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Type of facility</mat-label>
+                    </div>
+                 
+                    <div [formGroup]='formGroup'>
+                        <mat-select   name='typeOfFacility' formControlName='TYPEOFFACILITY'
+                        [(ngModel)]="cplogbookDraftDetails.typeOfFacility">
+                        <mat-option *ngFor="let businessSegment of facility" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                      </div>
+                      
+                    <mat-error *ngIf="typeOfFacilityFormControl.hasError('required')">
+                        Type of facility <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Account Number</mat-label>
+                    </div>
+                   
+                        <input  matInput type="number" name="accountNo" 
+                            [(ngModel)]="cplogbookDraftDetails.accountNo" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  maxlength='14' class="mat-form-field">
+                    
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        SBP CIB Code should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        SBP CIB Code should be atleast of length 7
+                    </mat-error>-->
+                    <!-- <mat-error *ngIf="accountNoFormControl.hasError('required')">
+                        Account Number <strong>required</strong>
+                    </mat-error> -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Condition / Covenant</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <input  matInput name="conditions" formControlName='CONDITIONS'
+                            [(ngModel)]="cplogbookDraftDetails.conditions" class="mat-form-field">
+                    </div>
+                   <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Customer type should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Customer type should be atleast of length 7
+                    </mat-error>
+                      -->
+                    <mat-error *ngIf="conditionsFormControl.hasError('required')">
+                        Condition / Covenant <strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Due Date</mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                        <input matInput name="dueDate" formControlName='DUEDATE'
+                            [(ngModel)]="cplogbookDraftDetails.dueDate" class="mat-form-field">
+                    </div> -->
+                    <input type="date" matInput name="dueDate" (change)= "onChange()" max="2040-01-02" [(ngModel)]="cplogbookDraftDetails.dueDate">
+                
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker> 
+                      -->
+                    <mat-error *ngIf="dueDateFormControl.hasError('required')">
+                        Due Date<strong>required</strong>
+                    </mat-error> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Tracking Date</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <input  readonly matInput name="trackingDate"   formControlName='TRACKINGDATE'
+                            [(ngModel)]="cplogbookDraftDetails.trackingDate" class="mat-form-field">
+
+                    </div>
+                    <!-- <input matInput [matDatepicker]="picker011" name="trackingDate" (input)= "onChange()" [(ngModel)]="cplogbookDraftDetails.trackingDate">
+                
+                    <mat-datepicker-toggle matSuffix [for]="picker011"></mat-datepicker-toggle>
+                    <mat-datepicker #picker011></mat-datepicker> 
+                    <mat-error *ngIf="trackingDateFormControl.hasError('required')">
+                        Tracking Date <strong>required</strong>
+                    </mat-error> -->
+                </mat-form-field>
+            </mat-grid-tile>
+
+
+
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Action Taken or to be taken</mat-label>
+                    </div>
+              
+                        <input matInput name="acctionToBeTaken" 
+                         [(ngModel)]="cplogbookDraftDetails.acctionToBeTaken"
+                            class="mat-form-field" maxlength="200">
+               
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Customer type should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Customer type should be atleast of length 7
+                    </mat-error>-->
+                    <!-- <mat-error *ngIf="actionFormControl.hasError('required')">
+                    Action to be taken<strong>required</strong>
+                    </mat-error>  -->
+                </mat-form-field>
+
+            </mat-grid-tile>
+
+
+
+ <!-- <mat-grid-tile>
+                <mat-checkbox (click)="toggle()" >
+                    Completed</mat-checkbox>
+            </mat-grid-tile> -->
+
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Completion Date</mat-label>
+                 </div>
+                    <input type ="date" matInput  name="complianceDate"  [(ngModel)]="cplogbookDraftDetails.complianceDate">
+                
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker12"></mat-datepicker-toggle>
+                    <mat-datepicker #picker12></mat-datepicker>  -->
+                 
+                </mat-form-field>
+                
+            </mat-grid-tile>
+            
+            <!-- <mat-grid-tile> -->
+                
+          
+           
+            <mat-grid-tile>  
+                </mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile> <button style="
+            background-color: #00AA97;
+                height:48px ;
+                width:250px !important;
+                font-size:20px !important;" mat-raised-button color="primary" (click)="validaions();">Save to Database</button>
+                 <h1 style="color:white">hiiiiiiiiiii</h1>   <button style="
+                 background-color: #00AA97;
+                     height:48px ;
+                     width:100px !important;
+                     font-size:20px !important;" mat-raised-button color="primary"  (click)="goback();">Go Back</button>
+             
+            
+            
+            
+            </mat-grid-tile>
+
+        </mat-grid-list>
+        <mat-grid-tile></mat-grid-tile>
+    </form>
+
+</mat-card>
+
+
+
+<br>
+
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">CP Conditions Monitoring Data</mat-card>
+<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column">
+    <div fxFlex>
+
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" style="color : #00AA97;">
+        </mat-form-field>
+        <button mat-raised-button   style="
+        background-color: #00AA97;
+            " (click)="exporter.exportTable('xlsx', {fileName:'CP Conditions Monitoring ', sheet: 'CP Conditions Monitoring '})">Generate Report</button>
+    <table mat-table [dataSource]="dataSource" matTableExporter #exporter="matTableExporter" class="mat-elevation-z8">
+            <ng-container matColumnDef="primeNumber">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Prime Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.primeNumber}} </td>
+            </ng-container>
+            <ng-container matColumnDef="businessSegment">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Name of Business Segment </th>
+                <td mat-cell *matCellDef="let element"> {{element.businessSegment}} </td>
+            </ng-container>
+             <ng-container matColumnDef="region" >
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Region </th>
+                <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+            </ng-container>
+            <ng-container matColumnDef="branchCode">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Branch Code </th>
+                <td mat-cell *matCellDef="let element"> {{element.branchCode}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="nameOfBorrower">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Name of Borrower </th>
+                <td mat-cell *matCellDef="let element"> {{element.nameOfBorrower}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="cpApprovalNo">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> CP Approval No </th>
+                <td mat-cell *matCellDef="let element"> {{element.cpApprovalNo}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="cpApprovalDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Cp Approval Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.cpApprovalDate|date:'dd-MM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="dateOfDisbursement">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Date of Disbursement</th>
+                <td mat-cell *matCellDef="let element"> {{element.dateOfDisbursement|date:'dd-MM-yyyy'}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="typeOfFacility">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Type of Facility </th>
+                <td mat-cell *matCellDef="let element"> {{element.typeOfFacility}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="accountNo">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Account Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.accountNo}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="dueDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Due Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.dueDate|date:'dd-MM-yyyy'}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="trackingDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Tracking Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.trackingDate|date:'dd-MM-yyyy'}} </td>
+            </ng-container> 
+            <ng-container matColumnDef="acctionToBeTaken">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Action Taken or to be taken </th>
+                <td mat-cell *matCellDef="let element"> {{element.acctionToBeTaken}} </td>
+            </ng-container> 
+
+ <ng-container matColumnDef="complianceDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Completion Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.complianceDate|date:'dd-MM-yyyy'}} </td>
+            </ng-container> 
+
+<!-- 
+            <ng-container matColumnDef="remarks">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Remarks </th>
+                <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
+            </ng-container>  -->
+            <ng-container matColumnDef="createdBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Created By</th>
+                <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="modifiedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Modified By </th>
+                <td mat-cell *matCellDef="let element"> {{element.modifiedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="modifiedOn">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Modified On </th>
+                <td mat-cell *matCellDef="let element"> {{element.modifiedOn}} </td>
+            </ng-container>
+            <ng-container matColumnDef="createdOn">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Created On </th>
+                <td mat-cell *matCellDef="let element"> {{element.createdOn}} </td>
+            </ng-container>
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <!-- <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:100px !important;
+                        font-size:20px !important;"  class="btn-small btn-success"  mat-raised-button color="primary">Edit</button> -->
+              
+                </th> 
+ <td mat-cell *matCellDef="let cplogbookDraftData">
+    <div *ngIf="hideEdit === 'false'">
+                    <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="editCustomerDemographic(cplogbookDraftData)" class="btn-small btn-success"  mat-raised-button color="primary">Edit</button>
+                 </div>
+                </td>
+              </ng-container>
+
+
+
+              <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>
+                    <!-- <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" mat-raised-button color="warn">Delete</button>  -->
+               
+                </th>
+                <td mat-cell *matCellDef="let cplogbookDraftData">
+                    <div *ngIf="hideDelete === 'false'">
+                    <button style="
+                    
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="deleteCustomer(cplogbookDraftData.primeNumber)" mat-raised-button color="warn">Delete</button>
+                 </div>
+                </td>
+              </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div> 

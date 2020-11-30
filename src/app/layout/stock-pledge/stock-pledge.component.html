@@ -1,0 +1,1532 @@
+
+
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">STOCK INSPECTION - TICKLER (PLEDGE)</mat-card>
+<mat-card style="auto:">
+    <form>
+
+
+        <mat-grid-list cols="3" rowHeight="75px" gutterSize="1px">
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label class="mat-form-field-should-float">Prime Number</mat-label>
+                </div>
+                    <div [formGroup]='formGroup'>
+                        <input matInput formControlName="PRIMENUMBER" name="primeNumber" placeholder="Prime Number"
+                            class="mat-form-field"  (focusout)='alphanumeric($event.target.value)' style="text-transform: uppercase" 
+                            maxlength="6" minlength="6"
+                            [(ngModel)]="  stockInspectionPledgeDetails.primeNumber"
+                            [attr.disabled]="isDisabled" #primenumber
+                            (focusout)='onFocusOut()'>
+                    </div>
+                    <mat-error *ngIf="primeFormControl.hasError('minlength')">
+                        Prime Number should be atleast of length 6
+                    </mat-error>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Prime Number should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.errors.maxLength">
+                        Prime Number should be atleast of length 6
+                    </mat-error> -->
+                    <mat-error *ngIf="primeFormControl.hasError('required')">
+                        Prime Number <strong>required</strong>
+                    </mat-error>
+
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Name of Business Segment</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <!-- <mat-select name='businessSegment' formControlName='BS'
+                            [(ngModel)]="  stockInspectionPledgeDetails.businessSegment">
+                            <mat-option *ngFor="let businessSegment of business" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select> -->
+                        <input   readonly matInput name="businessSegment" formControlName='BS' 
+                        class="mat-form-field" [(ngModel)]="stockInspectionPledgeDetails.businessSegment" >
+                    </div>
+                    <mat-error *ngIf="businessSegmentFormControl.hasError('required')">
+                        Business Segment is <strong>required</strong>
+                    </mat-error>
+
+
+                </mat-form-field>
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Region</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <!-- <mat-select name='region' formControlName='REGION'
+                            [(ngModel)]="  stockInspectionPledgeDetails.region">
+                            <mat-option *ngFor="let businessSegment of Region" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select> -->
+                        <input  readonly matInput name="region" formControlName='REGION' 
+                        class="mat-form-field" [(ngModel)]="stockInspectionPledgeDetails.region" >
+                    </div>
+                    <mat-error *ngIf="regionFormControl.hasError('required')">
+                        Region is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Branch Code</mat-label>
+                    </div>
+
+<!-- 
+                    <mat-select name="branchCode" [(ngModel)]="  stockInspectionPledgeDetails.branchCode"
+                        (selectionChange)="onSearchChangeBranch($event.value)">
+
+
+                        <mat-option *ngFor="let branch of allBranchesDetails ;let i = index" [value]="branch.BranchCode">
+                            {{branch.BranchCode}}</mat-option>
+                    </mat-select> -->
+                    <div [formGroup]='formGroup'>
+                        <input  matInput readonly name="branchCode" type="number" formControlName='BRANCHCODE' oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  maxlength="4"
+                        class="mat-form-field" [(ngModel)]="stockInspectionPledgeDetails.branchCode">
+                      
+                    </div> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+
+
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Branch Name</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+
+                        <input readonly matInput name="branchName" formControlName='BRANCHNAME' class="mat-form-field"
+                            [(ngModel)]="  stockInspectionPledgeDetails.branchName">
+
+                    </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Branch Name should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Branch Name should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="branchNameControl.hasError('required')">
+                        Branch Name <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Name of Borrower</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <input matInput readonly name="nameOfBorrower" formControlName='NAMEOFBORROWER'
+                         [(ngModel)]="stockInspectionPledgeDetails.nameOfBorrower"
+                            class="mat-form-field">
+                    </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Name of Borrower should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Name of Borrower should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="nameOfBorrowerFormControl.hasError('required')">
+                        Name of Borrower<strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Team Leader / RRLH</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <input matInput name="rMCreditHub" formControlName='RMCREDIT'
+                            [(ngModel)]="  stockInspectionPledgeDetails.rMCreditHub" maxlength="35"
+                            class="mat-form-field">
+
+                    </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Name of Group should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Name of Group should be atleast of length 7
+                    </mat-error> -->
+                    <mat-error *ngIf="rMCreditHubFormControl.hasError('required')">
+                        Team Leader / RRLH <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Limit(Amount in Million)</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <input matInput readonly name="limit"type="number" formControlName='LIMIT'
+                            [(ngModel)]="  stockInspectionPledgeDetails.limit" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  maxlength="15"
+                            class="mat-form-field">
+
+                    </div>
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        Customer Status should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        Customer Status should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="limitFormControl.hasError('required')">
+                        Limit <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Joint Inspection</mat-label>
+                    </div>
+                 
+                        <!-- <input matInput name="frequency"  formControlName='FREQUENCY' [(ngModel)]="  stockInspectionPledgeDetails.frequency" class="mat-form-field"> -->
+
+
+                        <mat-select name='jointInspection' (ngModelChange)="onChange($event)" 
+                            [(ngModel)]="  stockInspectionPledgeDetails.jointInspection">
+                            <mat-option *ngFor="let businessSegment of Joint" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select>
+
+                    
+
+
+                    <!-- <mat-select   name='region' formControlName='REGION'
+                    [(ngModel)]="  stockInspectionPledgeDetails.region">
+                        <mat-option *ngFor="let businessSegment of Region" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select> -->
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        CNIC should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        CNIC should be atleast of length 7
+                    </mat-error>-->
+                    <!-- <mat-error *ngIf="frequencyFormControl.hasError('required')">
+                        Frequency <strong>required</strong>
+                    </mat-error> -->
+                </mat-form-field>
+            </mat-grid-tile>
+           
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Frequency</mat-label>
+                    </div>
+                    <div [formGroup]='formGroup'>
+                        <!-- <input matInput name="frequency"  formControlName='FREQUENCY' [(ngModel)]="  stockInspectionPledgeDetails.frequency" class="mat-form-field"> -->
+
+
+                        <mat-select name='frequency' formControlName='FREQUENCY' (ngModelChange)="onChange($event)" 
+                            [(ngModel)]="  stockInspectionPledgeDetails.frequency">
+                            <mat-option *ngFor="let businessSegment of Frequency" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select>
+
+                    </div>
+
+
+                    <!-- <mat-select   name='region' formControlName='REGION'
+                    [(ngModel)]="  stockInspectionPledgeDetails.region">
+                        <mat-option *ngFor="let businessSegment of Region" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select> -->
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        CNIC should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        CNIC should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="frequencyFormControl.hasError('required')">
+                        Frequency <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>Year</mat-label>
+                    </div>
+                   
+                        <!-- <input matInput name="frequency"  formControlName='FREQUENCY' [(ngModel)]="  stockInspectionPledgeDetails.frequency" class="mat-form-field"> -->
+
+
+                        <mat-select name='year' 
+                            [(ngModel)]="  stockInspectionPledgeDetails.year">
+                            <mat-option *ngFor="let businessSegment of year" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select>
+
+                 
+
+
+                    <!-- <mat-select   name='region' formControlName='REGION'
+                    [(ngModel)]="  stockInspectionPledgeDetails.region">
+                        <mat-option *ngFor="let businessSegment of Region" [value]="businessSegment.value" >
+                          {{businessSegment.viewValue}}
+                        </mat-option>
+                      </mat-select> -->
+                    <!-- <mat-error *ngIf="primeFormControl.hasError('minLength')">
+                        CNIC should be atleast of length 6
+                    </mat-error>
+                    <mat-error *ngIf="primeFormControl.hasError('maxLength')">
+                        CNIC should be atleast of length 7
+                    </mat-error>-->
+                    <mat-error *ngIf="frequencyFormControl.hasError('required')">
+                        Frequency <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            
+            <div *ngIf="selectedType === 'Monthly'">
+      <mat-grid-tile>
+                 <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Jan Conducted By</mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="marchConductedBy" formControlName='MARCHCONDUCTEd' [(ngModel)]="  stockInspectionPledgeDetails.marchConductedBy"  class="mat-form-field">
+                  </div> -->
+                  
+                        
+
+
+
+                        <mat-select name='janConductedBy' (ngModelChange)="onChange1($event)"
+                            [(ngModel)]="  stockInspectionPledgeDetails.janConductedBy">
+                            <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select>
+
+                 
+                    <!-- <mat-error *ngIf="marchConductedByFormControl.hasError('Required')">
+                        Jan Conducted By<strong>Required</strong>
+                    </mat-error> -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType1 === 'Out-source'">     
+      <mat-grid-tile>
+        <mat-form-field class="example-full-width">
+
+           <div class="Required">
+           <mat-label>Jan Conducted By(outSource)</mat-label>
+           </div>
+           <!-- <div [formGroup]='formGroup'>
+           <input matInput name="marchConductedBy" formControlName='MARCHCONDUCTEd' [(ngModel)]="  stockInspectionPledgeDetails.marchConductedBy"  class="mat-form-field">
+         </div> -->
+         
+               
+
+
+
+               <mat-select name='janConductedByOutsource' 
+                   [(ngModel)]="  stockInspectionPledgeDetails.janConductedByOutsource">
+                   <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                       {{businessSegment.viewValue}}
+                   </mat-option>
+               </mat-select>
+
+        
+           <!-- <mat-error *ngIf="marchConductedByFormControl.hasError('Required')">
+               Jan Conducted By<strong>Required</strong>
+           </mat-error> -->
+       </mat-form-field>
+   </mat-grid-tile>
+</div>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Jan Date</mat-label>
+</div>
+
+                    <!-- <input matInput name="janDate"
+                        [(ngModel)]="  stockInspectionPledgeDetails.janDate" class="mat-form-field"> -->
+
+                        <input type='date' max="2040-01-02" matInput  name="all1QTRConductedDate"  [(ngModel)]="stockInspectionPledgeDetails.janDate">
+                
+                       
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+
+                        Feb Conducted By</mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="juneConductedBy" formControlName='JUNECONDUCTED' [(ngModel)]="  stockInspectionPledgeDetails.juneConductedBy"  class="mat-form-field">
+                  </div> -->
+
+
+                    <mat-select name='febConductedBy' (ngModelChange)="onChange2($event)"
+                        [(ngModel)]="  stockInspectionPledgeDetails.febConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+
+
+
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType2 === 'Out-source'">  
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="required">
+                    <mat-label>
+
+                        Feb Conducted By (OutSource)</mat-label>
+                    </div>
+                    <!-- <div [formGroup]='formGroup'>
+                    <input matInput name="juneConductedBy" formControlName='JUNECONDUCTED' [(ngModel)]="  stockInspectionPledgeDetails.juneConductedBy"  class="mat-form-field">
+                  </div> -->
+
+
+                    <mat-select name='febConductedByOutsource' 
+                        [(ngModel)]="  stockInspectionPledgeDetails.febConductedByOutsource">
+                        <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+
+
+
+                </mat-form-field>
+            </mat-grid-tile>
+        </div>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>Feb Date</mat-label>
+</div>
+
+                    <!-- <input matInput name="febDate"
+                        [(ngModel)]="  stockInspectionPledgeDetails.febDate" class="mat-form-field"> -->
+
+                   
+                        <input type='date' matInput  name="febDate"  [(ngModel)]="stockInspectionPledgeDetails.febDate">
+                
+                       
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>March Conducted By</mat-label>
+                    </div>
+
+
+                    <mat-select name='marchConductedBy' (ngModelChange)="onChange3($event)"
+                        [(ngModel)]="stockInspectionPledgeDetails.marchConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                    
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType3 === 'Out-source'">  
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>March Conducted By(Outsource)</mat-label>
+                    </div>
+
+
+                    <mat-select name='marchConductedByOutsource' 
+                        [(ngModel)]="stockInspectionPledgeDetails.marchConductedByOutsource">
+                        <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                    
+                </mat-form-field>
+            </mat-grid-tile>
+        </div>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        March Date</mat-label>
+                        </div>
+                    <!-- <div [formGroup]='formGroup'> -->
+                    <!-- <input matInput name="marchDate" 
+                        [(ngModel)]="  stockInspectionPledgeDetails.marchDate" class="mat-form-field"> -->
+                        <input type='date' matInput name="marchDate"  [(ngModel)]="stockInspectionPledgeDetails.marchDate">
+                
+                        
+                </mat-form-field>
+            </mat-grid-tile>
+
+
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        April Conducted By</mat-label>
+                 </div>
+
+                    <mat-select name='aprilConductedBy'  (ngModelChange)="onChange4($event)"
+                        [(ngModel)]="stockInspectionPledgeDetails.aprilConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                    
+                    
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType4 === 'Out-source'">  
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        April Conducted By(Outsource)</mat-label>
+                 </div>
+
+                    <mat-select name='aprilConductedBy'
+                        [(ngModel)]="stockInspectionPledgeDetails.aprilConductedBy">
+                        <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                    
+                    
+                </mat-form-field>
+            </mat-grid-tile>
+        </div>
+            <mat-grid-tile>
+
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+
+                        April Date</mat-label>
+                        </div>
+                    <!-- <div [formGroup]='formGroup'> -->
+                    <!-- <input matInput name="aprilDate" 
+                        [(ngModel)]="  stockInspectionPledgeDetails.aprilDate" class="mat-form-field"> -->
+                        <input type='date' max="2040-01-02" matInput [matDatepicker]="picker4" name="aprilDate"  [(ngModel)]="stockInspectionPledgeDetails.aprilDate">
+                
+                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                        <mat-datepicker #picker4></mat-datepicker> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        May Conducted By</mat-label>
+                        </div>
+                        <mat-select name='mayConductedBy' (ngModelChange)="onChange5($event)"
+                        [(ngModel)]="stockInspectionPledgeDetails.mayConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType5 === 'Out-source'">  
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        May Conducted By(Outsource)</mat-label>
+                        </div>
+                        <mat-select name='mayConductedByOutsource' 
+                        [(ngModel)]="stockInspectionPledgeDetails.mayConductedByOutsource">
+                        <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </div>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        May Date</mat-label>
+                        </div>
+
+                    <!-- <div [formGroup]='formGroup'> -->
+                    <!-- <input matInput name="mayDate"
+                        [(ngModel)]="  stockInspectionPledgeDetails.mayDate" class="mat-form-field"> -->
+                        <input type='date' max="2040-01-02" matInput name="mayDate"  [(ngModel)]="stockInspectionPledgeDetails.mayDate">
+                
+
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        June Conducted By</mat-label>
+                        </div>
+
+                        <mat-select name='juneConductedBy' (ngModelChange)="onChange6($event)"
+                        [(ngModel)]="stockInspectionPledgeDetails.juneConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType6 === 'Out-source'">  
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        June Conducted By(Outsource)</mat-label>
+                        </div>
+
+                        <mat-select name='juneConductedByOutsource' 
+                        [(ngModel)]="stockInspectionPledgeDetails.juneConductedByOutsource">
+                        <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </div>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        June Date</mat-label>
+                        </div>
+
+                    <!-- <div [formGroup]='formGroup'> -->
+                    <!-- <input matInput name="juneDate" 
+                        [(ngModel)]="  stockInspectionPledgeDetails.juneDate" class="mat-form-field"> -->
+                        <input type='date' max="2040-01-02" matInput [matDatepicker]="picker6" name="juneDate"  [(ngModel)]="stockInspectionPledgeDetails.juneDate">
+                
+                
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        July Conducted By</mat-label>
+                        </div>
+                        <mat-select name='julyConductedBy' (ngModelChange)="onChange7($event)"
+                        [(ngModel)]="stockInspectionPledgeDetails.julyConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType7 === 'Out-source'">  
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        July Conducted By(Outsource)</mat-label>
+                        </div>
+                        <mat-select name='julyConductedByOutsource' 
+                        [(ngModel)]="stockInspectionPledgeDetails.julyConductedByOutsource">
+                        <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </div>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        July Date </mat-label>
+                        </div>
+                    <!-- <div [formGroup]='formGroup'> -->
+                    <!-- <input matInput name="julyDate" 
+                        [(ngModel)]="  stockInspectionPledgeDetails.julyDate" class="mat-form-field"> -->
+                        <input type='date' matInput max="2040-01-02" name="julyDate"  [(ngModel)]="stockInspectionPledgeDetails.julyDate">
+                
+                        <!-- <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
+                        <mat-datepicker #picker7></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        August Conducted By</mat-label>
+                        </div>
+
+                        <mat-select name='augustConductedBy' (ngModelChange)="onChange8($event)"
+                        [(ngModel)]="stockInspectionPledgeDetails.augustConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType8 === 'Out-source'">  
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        August Conducted By(OutSource)</mat-label>
+                        </div>
+
+                        <mat-select name='augustConductedByOutsource' 
+                        [(ngModel)]="stockInspectionPledgeDetails.augustConductedByOutsource">
+                        <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </div>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        August Date</mat-label>
+                        </div>
+                    <!-- <div [formGroup]='formGroup'> -->
+                    <!-- <input matInput name="augustDate" 
+                        [(ngModel)]="  stockInspectionPledgeDetails.augustDate" class="mat-form-field"> -->
+                        <input type='date' matInput  name="augustDate"  [(ngModel)]="stockInspectionPledgeDetails.augustDate">
+                
+                        <mat-datepicker-toggle matSuffix [for]="picker8"></mat-datepicker-toggle>
+                        <mat-datepicker #picker8></mat-datepicker> 
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        September Conducted By</mat-label>
+                        </div>
+
+                        <mat-select name='septemberConductedBy'  (ngModelChange)="onChange9($event)"
+                        [(ngModel)]="stockInspectionPledgeDetails.septemberConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType9 === 'Out-source'">  
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        September Conducted By(Outsource)</mat-label>
+                        </div>
+
+                        <mat-select name='septemberConductedByOutsource'
+                        [(ngModel)]="stockInspectionPledgeDetails.septemberConductedByOutsource">
+                        <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </div>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        September Date</mat-label>
+                        </div>
+                    <!-- <div [formGroup]='formGroup'> -->
+                    <!-- <input matInput name="septemberDate"
+                        [(ngModel)]="  stockInspectionPledgeDetails.septemberDate" class="mat-form-field"> -->
+                        <input type='date' matInput  name="septemberDate"  [(ngModel)]="stockInspectionPledgeDetails.septemberDate">
+<!--                 
+                        <mat-datepicker-toggle matSuffix [for]="picker19"></mat-datepicker-toggle>
+                        <mat-datepicker #picker19></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        October Conducted By </mat-label>
+                        </div>
+                        <mat-select name='octoberConductedBy'(ngModelChange)="onChange10($event)"
+                        [(ngModel)]="stockInspectionPledgeDetails.octoberConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType10 === 'Out-source'">  
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        October Conducted By (Outsource)</mat-label>
+                        </div>
+                        <mat-select name='octoberConductedByOutsource' 
+                        [(ngModel)]="stockInspectionPledgeDetails.octoberConductedByOutsource">
+                        <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </div>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        October Date</mat-label>
+                        </div>
+
+                    <!-- <div [formGroup]='formGroup'> -->
+                    <!-- <input matInput name="octoberDate" 
+                        [(ngModel)]="  stockInspectionPledgeDetails.octoberDate" class="mat-form-field"> -->
+                        <input type='date' matInput  name="octoberDate"  [(ngModel)]="stockInspectionPledgeDetails.octoberDate">
+<!--                 
+                        <mat-datepicker-toggle matSuffix [for]="picker9"></mat-datepicker-toggle>
+                        <mat-datepicker #picker9></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                           <div class="Required">
+                    <mat-label>
+                        November Conducted By</mat-label>
+                        </div>
+
+                        <mat-select name='novemberConductedBy' (ngModelChange)="onChange11($event)"
+                        [(ngModel)]="stockInspectionPledgeDetails.novemberConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType11 === 'Out-source'">  
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                           <div class="Required">
+                    <mat-label>
+                        November Conducted By(Outsource)</mat-label>
+                        </div>
+
+                        <mat-select name='novemberConductedByOutsource' 
+                        [(ngModel)]="stockInspectionPledgeDetails.novemberConductedByOutsource">
+                        <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </div>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        November Date</mat-label>
+                        </div>
+                    <!-- <div [formGroup]='formGroup'> -->
+                    <!-- <input matInput name="novemberDate" 
+                        [(ngModel)]="  stockInspectionPledgeDetails.novemberDate" class="mat-form-field"> -->
+                        <input type='Date' matInput  name="novemberDate"  [(ngModel)]="stockInspectionPledgeDetails.novemberDate">
+                
+                        
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        December Conduted By</mat-label>
+                        </div>
+
+                        <mat-select name='decemberConductedBy' (ngModelChange)="onChange12($event)"
+                        [(ngModel)]="stockInspectionPledgeDetails.decemberConductedBy">
+                        <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <div *ngIf="selectedType12 === 'Out-source'">  
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        December Conduted By(Outsource)</mat-label>
+                        </div>
+
+                        <mat-select name='decemberConductedByOutsource' 
+                        [(ngModel)]="stockInspectionPledgeDetails.decemberConductedByOutsource">
+                        <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                            {{businessSegment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </div>
+            <mat-grid-tile>
+                <mat-form-field class="example-full-width">
+                    <div class="Required">
+                    <mat-label>
+                        December Date</mat-label>
+                        </div>
+
+                    <!-- <div [formGroup]='formGroup'> -->
+                    <!-- <input matInput name="decemberDate" 
+                        [(ngModel)]="  stockInspectionPledgeDetails.decemberDate" class="mat-form-field"> -->
+                        <input type='Date' matInput  name="decemberDate"  [(ngModel)]="stockInspectionPledgeDetails.decemberDate">
+                
+                        <!-- <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                        <mat-datepicker #picker11></mat-datepicker>  -->
+                </mat-form-field>
+            </mat-grid-tile>
+     </div>
+     <div *ngIf="selectedType === 'Annualy'">    
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+                <div class="Required">
+                <mat-label>
+                    Yearly Conduted By</mat-label>
+                    </div>
+
+                    <mat-select name='yearly' (ngModelChange)="onChange12($event)"
+                    [(ngModel)]="stockInspectionPledgeDetails.yearly">
+                    <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                        {{businessSegment.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+        <div *ngIf="selectedType12 === 'Out-source'">  
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+                <div class="Required">
+                <mat-label>
+                    Yearly Conduted By(Outsource)</mat-label>
+                    </div>
+
+                    <mat-select name='yearlyOutsource' 
+                    [(ngModel)]="stockInspectionPledgeDetails.yearlyOutsource">
+                    <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                        {{businessSegment.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+    </div>
+
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+                <div class="Required">
+                <mat-label>
+                    Yearly Date</mat-label>
+                    </div>
+
+                <!-- <div [formGroup]='formGroup'> -->
+                <!-- <input matInput name="decemberDate" 
+                    [(ngModel)]="  stockInspectionPledgeDetails.decemberDate" class="mat-form-field"> -->
+                    <input type='date' matInput name="yearlyDate"  
+                    [(ngModel)]="stockInspectionPledgeDetails.yearlyDate">
+            
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                    <mat-datepicker #picker11></mat-datepicker>  -->
+            </mat-form-field>
+        </mat-grid-tile>
+        
+    </div>
+    <div *ngIf="selectedType === 'Semi-annualy'">
+
+
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+                <div class="Required">
+                <mat-label>
+                    1st Semi-Anually Conduted By</mat-label>
+                    </div>
+
+                    <mat-select name='stsemianually' (ngModelChange)="onChange12($event)"
+                    [(ngModel)]="stockInspectionPledgeDetails.stsemianually">
+                    <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                        {{businessSegment.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+        <div *ngIf="selectedType12 === 'Out-source'">  
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+                <div class="Required">
+                <mat-label>
+                    1st Semi-Anually Conduted By(Outsource)</mat-label>
+                    </div>
+
+                    <mat-select name='stsemianuallyOutsource' 
+                    [(ngModel)]="stockInspectionPledgeDetails.stsemianuallyOutsource">
+                    <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                        {{businessSegment.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+    </div>
+
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+                <div class="Required">
+                <mat-label>
+                    1st Semi-Anually  Date</mat-label>
+                    </div>
+
+                <!-- <div [formGroup]='formGroup'> -->
+                <!-- <input matInput name="decemberDate" 
+                    [(ngModel)]="  stockInspectionPledgeDetails.decemberDate" class="mat-form-field"> -->
+                    <input type='date' matInput name="stsemianuallyDate"  [(ngModel)]="stockInspectionPledgeDetails.stsemianuallyDate">
+            
+                    <!-- <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                    <mat-datepicker #picker11></mat-datepicker>  -->
+            </mat-form-field>
+        </mat-grid-tile>
+        
+
+
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+                <div class="Required">
+                <mat-label>
+                    2nd Semi-Anually  Conduted By</mat-label>
+                    </div>
+
+                    <mat-select name='ndsemianually' (ngModelChange)="onChange12($event)"
+                    [(ngModel)]="stockInspectionPledgeDetails.ndsemianually">
+                    <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                        {{businessSegment.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+        <div *ngIf="selectedType12 === 'Out-source'">  
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+                <div class="Required">
+                <mat-label>
+                    2nd Semi-Anually  Conduted By(Outsource)</mat-label>
+                    </div>
+
+                    <mat-select name='ndsemianuallyOutsource' 
+                    [(ngModel)]="stockInspectionPledgeDetails.ndsemianuallyOutsource">
+                    <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                        {{businessSegment.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+    </div>
+
+        <mat-grid-tile>
+            <mat-form-field class="example-full-width">
+                <div class="Required">
+                <mat-label>
+                    2nd Semi-Anually Date</mat-label>
+                    </div>
+
+                <!-- <div [formGroup]='formGroup'> -->
+                <!-- <input matInput name="decemberDate" 
+                    [(ngModel)]="  stockInspectionPledgeDetails.decemberDate" class="mat-form-field"> -->
+                    <input type='date' matInput  name="ndsemianuallyDate"  [(ngModel)]="stockInspectionPledgeDetails.ndsemianuallyDate">
+<!--             
+                    <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                    <mat-datepicker #picker11></mat-datepicker>  -->
+            </mat-form-field>
+        </mat-grid-tile>
+        
+            </div>
+            <div *ngIf="selectedType === 'Quarterly'">
+
+
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            1st Quarter Conduted By</mat-label>
+                            </div>
+        
+                            <mat-select name='st1quater' (ngModelChange)="onChange12($event)"
+                            [(ngModel)]="stockInspectionPledgeDetails.st1quater">
+                            <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <div *ngIf="selectedType12 === 'Out-source'">  
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            1st Quarter Conduted By(Outsource)</mat-label>
+                            </div>
+        
+                            <mat-select name='st1quaterOutsource' 
+                            [(ngModel)]="stockInspectionPledgeDetails.st1quaterOutsource">
+                            <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </div>
+        
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            1st Quarter Date</mat-label>
+                            </div>
+        
+                        <!-- <div [formGroup]='formGroup'> -->
+                        <!-- <input matInput name="decemberDate" 
+                            [(ngModel)]="  stockInspectionPledgeDetails.decemberDate" class="mat-form-field"> -->
+                            <input type='date' matInput  name="st1quaterDate"  [(ngModel)]="stockInspectionPledgeDetails.st1quaterDate">
+                    
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                            <mat-datepicker #picker11></mat-datepicker>  -->
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            2nd Quarter Conduted By</mat-label>
+                            </div>
+        
+                            <mat-select name='nd2qauter' (ngModelChange)="onChange12($event)"
+                            [(ngModel)]="stockInspectionPledgeDetails.nd2qauter">
+                            <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <div *ngIf="selectedType12 === 'Out-source'">  
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            2nd Quarter Conduted By(Outsource)</mat-label>
+                            </div>
+        
+                            <mat-select name='nd2qauterOutsource' 
+                            [(ngModel)]="stockInspectionPledgeDetails.nd2qauterOutsource">
+                            <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </div>
+        
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            2nd Quarter Date</mat-label>
+                            </div>
+        
+                        <!-- <div [formGroup]='formGroup'> -->
+                        <!-- <input matInput name="decemberDate" 
+                            [(ngModel)]="  stockInspectionPledgeDetails.decemberDate" class="mat-form-field"> -->
+                            <input type='text' matInput  name="nd2qauterDate" 
+                             [(ngModel)]="stockInspectionPledgeDetails.nd2qauterDate">
+                    
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                            <mat-datepicker #picker11></mat-datepicker>  -->
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            3rd Quarter Conduted By</mat-label>
+                            </div>
+        
+                            <mat-select name='rd3quater' (ngModelChange)="onChange12($event)"
+                            [(ngModel)]="stockInspectionPledgeDetails.rd3quater">
+                            <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <div *ngIf="selectedType12 === 'Out-source'">  
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                        3rd  Quarter Conduted By(Outsource)</mat-label>
+                            </div>
+        
+                            <mat-select name='rd3quaterOutsource' 
+                            [(ngModel)]="stockInspectionPledgeDetails.rd3quaterOutsource">
+                            <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </div>
+        
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            3rd Quarter Date</mat-label>
+                            </div>
+        
+                        <!-- <div [formGroup]='formGroup'> -->
+                        <!-- <input matInput name="decemberDate" 
+                            [(ngModel)]="  stockInspectionPledgeDetails.decemberDate" class="mat-form-field"> -->
+                            <input type='date' matInput  name="rd3quaterDate" 
+                             [(ngModel)]="stockInspectionPledgeDetails.rd3quaterDate">
+                    
+                            <!-- <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                            <mat-datepicker #picker11></mat-datepicker>  -->
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            4th Quarter Conduted By</mat-label>
+                            </div>
+        
+                            <mat-select name='th4quater' (ngModelChange)="onChange12($event)"
+                            [(ngModel)]="stockInspectionPledgeDetails.th4quater">
+                            <mat-option *ngFor="let businessSegment of Conductedby" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <div *ngIf="selectedType12 === 'Out-source'">  
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            4th Quarter Conduted By(Outsource)</mat-label>
+                            </div>
+        
+                            <mat-select name='th4quaterOutsource' 
+                            [(ngModel)]="stockInspectionPledgeDetails.th4quaterOutsource">
+                            <mat-option *ngFor="let businessSegment of Outsource" [value]="businessSegment.value">
+                                {{businessSegment.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </div>
+        
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <div class="Required">
+                        <mat-label>
+                            4th Quarter Date</mat-label>
+                            </div>
+        
+                        <!-- <div [formGroup]='formGroup'> -->
+                        <!-- <input matInput name="decemberDate" 
+                            [(ngModel)]="  stockInspectionPledgeDetails.decemberDate" class="mat-form-field"> -->
+                            <input type='date' matInput  name="th4quaterDate" 
+                             [(ngModel)]="stockInspectionPledgeDetails.th4quaterDate">
+<!--                     
+                            <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                            <mat-datepicker #picker11></mat-datepicker>  -->
+                    </mat-form-field>
+                </mat-grid-tile>
+                                
+
+            </div>
+            <mat-grid-tile>  </mat-grid-tile>
+            <mat-grid-tile>  </mat-grid-tile>
+            <mat-grid-tile>  </mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+            <mat-grid-tile> <button style="
+            background-color: #00AA97;
+                height:48px ;
+                width:250px !important;
+                font-size:20px !important;" mat-raised-button color="primary"
+                    (click)="validaions();">Save to Database</button>
+              
+                <h1 style="color:white">hiiiiiiiiiii</h1>   <button style="
+                   background-color: #00AA97;
+                       height:48px ;
+                       width:100px !important;
+                       font-size:20px !important;" mat-raised-button color="primary"  (click)="goback();">Go Back</button></mat-grid-tile>
+            <mat-grid-tile></mat-grid-tile>
+        </mat-grid-list>
+    </form>
+
+</mat-card>
+
+
+
+<br>
+
+
+<mat-card style="color:aliceblue; font-size: larger; background-color: #00AA97;">STOCK INSPECTION - TICKLER (PLEDGE) Data</mat-card>
+<div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column">
+    <div fxFlex>
+
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" style="color : #00AA97;">
+        </mat-form-field>
+        <button mat-raised-button   style="
+        background-color: #00AA97;
+            " (click)="exporter.exportTable('xlsx', {fileName:'Stock Report ', sheet: 'Stock Report'})">Generate Report</button>
+            <table mat-table [dataSource]="dataSource" matTableExporter #exporter="matTableExporter" class="mat-elevation-z8">
+            <ng-container matColumnDef="primeNumber">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Prime Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.primeNumber}} </td>
+            </ng-container>
+            <ng-container matColumnDef="businessSegment">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Name of Business
+                    Segment </th>
+                <td mat-cell *matCellDef="let element"> {{element.businessSegment}} </td>
+            </ng-container>
+            <ng-container matColumnDef="region">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Region </th>
+                <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+            </ng-container>
+            <ng-container matColumnDef="branchCode">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Branch Code </th>
+                <td mat-cell *matCellDef="let element"> {{element.branchCode}} </td>
+            </ng-container>
+            <ng-container matColumnDef="branchName">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Branch Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.branchName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nameOfBorrower">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">Name Of Borrower</th>
+                <td mat-cell *matCellDef="let element"> {{element.nameOfBorrower}} </td>
+            </ng-container>
+            <ng-container matColumnDef="rMCreditHub">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Team Leader / RRLH</th>
+                <td mat-cell *matCellDef="let element"> {{element.rMCreditHub}} </td>
+            </ng-container>
+            <ng-container matColumnDef="limit">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Limit </th>
+                <td mat-cell *matCellDef="let element"> {{element.limit}} </td>
+            </ng-container>
+            <ng-container matColumnDef="frequency">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Frequency </th>
+                <td mat-cell *matCellDef="let element"> {{element.frequency}} </td>
+            </ng-container>
+            <ng-container matColumnDef="jointInspection">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Joint Inspection </th>
+                <td mat-cell *matCellDef="let element"> {{element.jointInspection}} </td>
+            </ng-container>
+            <ng-container matColumnDef="janConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Jan Conducted By</th>
+                <td mat-cell *matCellDef="let element"> {{element.janConductedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="janDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">Jan Date
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.janDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="febConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Feb Conducted By </th>
+                <td mat-cell *matCellDef="let element"> {{element.febConductedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="febDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Feb Date
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.febDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="marchConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> March Conducted By </th>
+                <td mat-cell *matCellDef="let element"> {{element.marchConductedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="marchDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">March Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.marchDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="aprilConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> April Conducted By</th>
+                <td mat-cell *matCellDef="let element"> {{element.aprilConductedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="aprilDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97">April Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.aprilDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="mayConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> May Conducted By </th>
+                <td mat-cell *matCellDef="let element"> {{element.mayConductedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="mayDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> May Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.mayDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="juneConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> June Conducted By </th>
+                <td mat-cell *matCellDef="let element"> {{element.juneConductedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="juneDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> June Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.juneDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="julyConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> July Conducted By </th>
+                <td mat-cell *matCellDef="let element"> {{element.julyConductedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="julyDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> July Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.julyDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="augustConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> August Conducted By </th>
+                <td mat-cell *matCellDef="let element"> {{element.augustConductedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="augustDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> August Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.augustDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="septemberConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Sep Conducted By </th>
+                <td mat-cell *matCellDef="let element"> {{element.septemberConductedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="septemberDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> September Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.septemberDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="octoberConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> October Conducted By </th>
+                <td mat-cell *matCellDef="let element"> {{element.octoberConductedBy}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="octoberDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> October Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.octoberDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="novemberConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> November Conducted By </th>
+                <td mat-cell *matCellDef="let element"> {{element.novemberConductedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="novemberDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> November Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.novemberDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="decemberConductedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> December Conducted By </th>
+                <td mat-cell *matCellDef="let element"> {{element.decemberConductedBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="decemberDate">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> December Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.decemberDate|date:'dd-MMM-yyyy'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="createdBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Created By</th>
+                <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+            </ng-container>
+            <ng-container matColumnDef="modifiedBy">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Modified By </th>
+                <td mat-cell *matCellDef="let element"> {{element.modifiedBy}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="modifiedOn">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Modified On </th>
+                <td mat-cell *matCellDef="let element"> {{element.modifiedOn}} </td>
+            </ng-container>
+            <ng-container matColumnDef="createdOn">
+                <th mat-header-cell *matHeaderCellDef style="font-size: medium;color : #00AA97"> Created On </th>
+                <td mat-cell *matCellDef="let element"> {{element.createdOn}} </td>
+            </ng-container>
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <!-- <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:100px !important;
+                        font-size:20px !important;"  class="btn-small btn-success"  mat-raised-button color="primary">Edit</button>
+              
+                </th> -->
+                <td mat-cell *matCellDef="let customerDemographicData">
+                    <div *ngIf="hideEdit === 'false'">
+                  <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="editCustomerDemographic(customerDemographicData)"
+                        class="btn-small btn-success" mat-raised-button color="primary">Edit</button>
+</div>
+                </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>
+                    <!-- <button style="
+                    background-color: #00AA97;
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" mat-raised-button color="warn">Delete</button> -->
+
+                </th>
+                <td mat-cell *matCellDef="let customerDemographicData">
+                    <div *ngIf="hideDelete === 'false'">
+                    <button style="
+                    
+                        height:48px ;
+                        width:85px !important;
+                        font-size:14px !important;" (click)="deleteCustomer(customerDemographicData.primeNumber)"
+                        mat-raised-button color="warn">Delete</button>
+</div>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
